@@ -14,6 +14,66 @@
 	<name>securityserver</name>
 	<description>Proyecto de socializacion 2 patrones de software universidad javeriana primer semestre 2020</description>
 
+	<!--
+		Informacion del equipo de desarrollo :p
+	-->
+	<developers>
+		<developer>
+			<id>wortiz</id>
+			<name>Wilman Ortiz</name>
+			<url>http://willmanortiz.wordpress.com/</url>
+			<organization>Developer</organization>
+			<organizationUrl>http://willmanortiz.wordpress.com/</organizationUrl>
+			<roles>
+				<role>Arquitecto</role>
+				<role>Desarrollador</role>
+			</roles>
+			<timezone>America/Bogota</timezone>
+			<properties>
+				<picture>http://www.oorsprong.org/WebSamples.CountryInfo/Images/Colombia.jpg</picture>
+			</properties>
+		</developer>
+		<developer>
+			<id>jcemelin</id>
+			<name>Jhon Edward Celemin Florez</name>
+			<organization>Developer</organization>
+			<roles>
+				<role>Arquitecto</role>
+				<role>Desarrollador</role>
+			</roles>
+			<timezone>America/Bogota</timezone>
+			<properties>
+				<picture>http://www.oorsprong.org/WebSamples.CountryInfo/Images/Colombia.jpg</picture>
+			</properties>
+		</developer>
+		<developer>
+			<id>bcbotia</id>
+			<name>Brian Camilo Suarez Botia</name>
+			<organization>Developer</organization>
+			<roles>
+				<role>Arquitecto</role>
+				<role>Desarrollador</role>
+			</roles>
+			<timezone>America/Bogota</timezone>
+			<properties>
+				<picture>http://www.oorsprong.org/WebSamples.CountryInfo/Images/Colombia.jpg</picture>
+			</properties>
+		</developer>
+		<developer>
+			<id>efrancorivera</id>
+			<name>Eduardo Franco Rivera</name>
+			<organization>Developer</organization>
+			<roles>
+				<role>Arquitecto</role>
+				<role>Desarrollador</role>
+			</roles>
+			<timezone>America/Bogota</timezone>
+			<properties>
+				<picture>http://www.oorsprong.org/WebSamples.CountryInfo/Images/Colombia.jpg</picture>
+			</properties>
+		</developer>
+	</developers>
+
 	<properties>
 		<java.version>11</java.version>
 		<spring-boot-admin.version>2.2.1</spring-boot-admin.version>
