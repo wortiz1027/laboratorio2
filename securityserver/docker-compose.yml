@@ -1,0 +1,54 @@
+# -------------------------------------------------------------------
+# - DOCKER COMPOSE FILE
+# - AUTOR: Equipo 5
+# - FECHA: 20-Abril-2020
+# - DESCRIPCION: Docker compose file que permite la
+# -              creacion de 2 contendores uno para la aplicacion
+# -              y otro para la base de datos de la app de seguridad
+# -------------------------------------------------------------------
+
+version: '3.8'
+services:
+  db_security:
+    container_name: db_security
+    image: mysql
+    hostname: db_security
+    environment:
+      MYSQL_ROOT_PASSWORD: 'mysql'
+      MYSQL_DATABASE: 'securitydb'
+      MYSQL_USER: 'security'
+      MYSQL_PASSWORD: 'security2020++'
+    ports:
+      - '6603:3306'
+    volumes:
+      - ./src/main/resources/databases/mysql/mysql-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-schema-v0.1.sql
+      - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  security:
+    image: security-service:latest
+    container_name: security-service-1
+    hostname: security-service
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - web
+    depends_on:
+      - db_security
+    environment:
+      - SERVICE_PORTS=8081
+      - DATABASE_HOST=db_security
+      - DATABASE_USER=security
+      - DATABASE_PASSWORD=security2020++
+      - DATABASE_NAME=securitydb
+      - DATABASE_PORT=6603
+volumes:
+  my-db:
+networks:
+  web:
+    driver: bridge

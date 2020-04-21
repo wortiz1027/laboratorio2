@@ -1,0 +1,54 @@
+# -------------------------------------------------------------------
+# - DOCKER COMPOSE FILE
+# - AUTOR: Equipo 5
+# - FECHA: 20-Abril-2020
+# - DESCRIPCION: Docker compose file que permite la
+# -              creacion de 2 contendores uno para la aplicacion
+# -              y otro para la base de datos de cotizaciones
+# -------------------------------------------------------------------
+
+version: '3.8'
+services:
+  db_cotizaciones:
+    container_name: db_cotizaciones
+    image: mysql
+    hostname: db_cotizaciones
+    environment:
+      MYSQL_ROOT_PASSWORD: 'mysql'
+      MYSQL_DATABASE: 'cotizacionesdb'
+      MYSQL_USER: 'cotizaciones'
+      MYSQL_PASSWORD: 'cotizaciones2020++'
+    ports:
+      - '6603:3306'
+    volumes:
+      - ./src/main/resources/databases/mysql/mysql-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-schema-v0.1.sql
+      - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  cotizaciones:
+    image: cotizaciones-service:latest
+    container_name: cotizaciones-service
+    hostname: cotizaciones-service
+    restart: always
+    ports:
+      - 8082:8082
+    networks:
+      - web
+    depends_on:
+      - db_cotizaciones
+    environment:
+      - SERVICE_PORTS=8082
+      - DATABASE_HOST=db_cotizaciones
+      - DATABASE_USER=cotizaciones
+      - DATABASE_PASSWORD=cotizaciones2020++
+      - DATABASE_NAME=cotizacionesdb
+      - DATABASE_PORT=6603
+volumes:
+  my-db:
+networks:
+  web:
+    driver: bridge
