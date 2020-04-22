@@ -23,6 +23,7 @@ services:
     volumes:
       - ./src/main/resources/databases/mysql/mysql-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-schema-v0.1.sql
       - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
+      - data_proveedores:/var/lib/mysql
     networks:
       - web
     healthcheck:
@@ -48,7 +49,7 @@ services:
       - DATABASE_NAME=proveedoresdb
       - DATABASE_PORT=6603
 volumes:
-  my-db:
+  data_proveedores:
 networks:
   web:
     driver: bridge
