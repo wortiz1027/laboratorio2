@@ -10,8 +10,8 @@
 version: '3.8'
 services:
   db_security:
-    container_name: db_security
     image: mysql
+    container_name: db_security
     hostname: db_security
     environment:
       MYSQL_ROOT_PASSWORD: 'mysql'
@@ -21,8 +21,8 @@ services:
     ports:
       - '6603:3306'
     volumes:
-      - ./src/main/resources/databases/mysql/mysql-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-schema-v0.1.sql
-      - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
+      - ./src/main/resources/databases/mysql-security-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-security-schema-v0.1.sql
+      - ./src/main/resources/databases/mysql-security-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-security-data-v0.1.sql
       - data_security:/var/lib/mysql
     networks:
       - web
@@ -32,7 +32,7 @@ services:
       retries: 10
   security:
     image: security-service:latest
-    container_name: security-service-1
+    container_name: security-service
     hostname: security-service
     restart: always
     ports:
