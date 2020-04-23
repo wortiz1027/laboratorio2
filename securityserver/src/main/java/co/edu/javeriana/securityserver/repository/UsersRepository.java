@@ -6,15 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
     @Query("SELECT count(u) FROM Users u WHERE u.username = :ipUsername")
-    boolean isUserAvailable(@Param("ipLogin") String login);
+    int isUserAvailable(@Param("ipUsername") String ipUsername);
 
     @Query("SELECT u FROM Users u WHERE u.username = :ipUsername")
-    Optional<Users> loadUserByName(@Param("ipUsername") String username);
+    Users loadUserByUsername(@Param("ipUsername") String username);
 
+    //void delete(BigDecimal idUser);
 }

@@ -85,9 +85,19 @@ public class Users implements java.io.Serializable {
     private String accountNonLocket;
 
     @ManyToMany(mappedBy = "userList", fetch = FetchType.LAZY)
-    private List<Roles> roleList;
+    private List<Roles> roles;
 
     public Users() {
+    }
+
+    public Users(Users users) {
+        this.cedula   = cedula;
+        this.email    = users.email;
+        this.idUser   = users.idUser;
+        this.apellido = users.apellido;
+        this.nombre   = users.nombre;
+        this.password = users.password;
+        this.roles    = users.roles;
     }
 
     public Users(BigDecimal idUser) {
@@ -216,12 +226,12 @@ public class Users implements java.io.Serializable {
         this.accountNonLocket = accountNonLocked;
     }
 
-    public List<Roles> getRoleList() {
-        return roleList;
+    public List<Roles> getRoles() {
+        return roles;
     }
 
-    public void setRoleList(List<Roles> roleList) {
-        this.roleList = roleList;
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
     }
 
     @Override

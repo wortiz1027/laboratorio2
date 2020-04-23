@@ -5,9 +5,9 @@ server:
   port: 8081
   servlet:
     context-path: /security
-    session:
-      cookie:
-        name: UISESSION
+    #session:
+    #  cookie:
+    #    name: UISESSION
 
 # +-----------------------------------------------------
 # |         SPRING CONFIG
@@ -18,7 +18,7 @@ spring:
   application:
     name: security
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialec
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     database: MYSQL
     open-in-view: false
     generate-ddl: false
@@ -32,33 +32,33 @@ spring:
           use_query_cache: false
         generate_statistic: true
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    datasource:
-      url: jdbc:mysql://db_security:3306/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      username: security
-      password: security2020++
-      platform: mysql
-      initialization-mode: always
-      #data: classpath:databases/mysql/mysql-data-v0.1.sql
-      hikari:
-        initialization-fail-timeout: 0
-        data-source-properties:
-          cachePrepStmts: true
-          useServerPrepStmts: true
-          prepStmtCacheSize: 250
-          prepStmtCacheSqlLimit: 2048
-          useLocalSessionState: true
-          useLocalTransactionState: true
-          rewriteBatchedStatements: true
-          cacheResultSetMetadata: true
-          cacheServerConfiguration: true
-          elideSetAutoCommits: true
-          maintainTimeStats: false
-        pool-name: securityPoolConetion
-        connection-timeout: 60000
-        maximum-pool-size: 5
-    jmx:
-      default-domain: startertest
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:6603/securitydb
+    username: security
+    password: security2020++
+    platform: mysql
+    initialization-mode: always
+    #data: classpath:databases/mysql/mysql-data-v0.1.sql
+    hikari:
+      initialization-fail-timeout: 0
+      data-source-properties:
+        cachePrepStmts: true
+        useServerPrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+      pool-name: securityPoolConetion
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jmx:
+    default-domain: startertest
 
 # +-----------------------------------------------------
 # |         SPRING LOGGIN CONFIG
@@ -68,7 +68,7 @@ logging:
     org.springframework.web: DEBUG
     org.springframework.data: DEBUG
     org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
   pattern:
     console: "%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

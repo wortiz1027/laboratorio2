@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface OAuthClientRepository extends JpaRepository<OauthClientDetails, Integer> {
 
@@ -16,6 +14,6 @@ public interface OAuthClientRepository extends JpaRepository<OauthClientDetails,
     int isClientAvailable(@Param("ipClientId") String clientId);
 
     @Query("SELECT client FROM OauthClientDetails client WHERE client.clientId = :ipClientId")
-    Optional<OauthClientDetails> loadClientById(@Param("ipClientId") String clientId);
+    OauthClientDetails loadClientById(@Param("ipClientId") String clientId);
 
 }
