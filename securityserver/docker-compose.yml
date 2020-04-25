@@ -24,7 +24,7 @@ services:
       - '6603:3306'
     volumes:
       - ./src/main/resources/databases/mysql-security-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-security-schema-v0.1.sql
-#      - data_security:/var/lib/mysql
+      - data_security:/var/lib/mysql
     networks:
       - backend
     healthcheck:

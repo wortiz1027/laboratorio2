@@ -16,7 +16,7 @@ spring:
   thymeleaf:
     cache: false
   main:
-    banner-mode: "off"
+    banner-mode: console
   application:
     name: cotizaciones
   datasource:
