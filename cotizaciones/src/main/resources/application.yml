@@ -13,6 +13,8 @@ server:
 # |         SPRING CONFIG
 # +-----------------------------------------------------
 spring:
+  thymeleaf:
+    cache: false
   main:
     banner-mode: "off"
   application:
