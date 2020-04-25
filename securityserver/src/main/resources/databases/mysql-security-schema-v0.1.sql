@@ -201,7 +201,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `securitydb`;
-INSERT INTO `securitydb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 8649168, 'Wilman Alberto', 'Ortiz Navarro', 'Calle 123', '1984-10-27', 301638457, 'willman.ortiz@gmail.com', 'root', '$2a$10$tartLAsO2Bm8iMtrqdyQXua/CMZ3/8260G/c4OKza6DslRKexKSuW', 'true', 'true', 'true', NULL);
+INSERT INTO `securitydb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 9645167, 'Administrator', 'Administrator', 'Calle 123', '1984-10-27', 301638457, 'administrator@localhost.co', 'admin', '$2a$10$.eFm7QuqWUg38t83B8RWseEwmb8bG9HuYltL/ogJqWmoX42q3fGXm', 'true', 'true', 'true', 'true');
 
 COMMIT;
 
@@ -235,6 +235,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `securitydb`;
-INSERT INTO `securitydb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('clientapp', 'microservice', '987654321', 'read,write', 'password,refresh_token,client_credentials', 'http://localhost:8086/MicroServices/', 'USER', 300, 600, '', 'false');
+INSERT INTO `securitydb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('cotizaciones_app', 'cotizaciones_service', '$2a$10$lR.WaWxURw5WJL9zvS4io.QfDFQxjMzHEtOZ/o9I02T3dh4XCnwGC', 'read,write', 'password,refresh_token,client_credentials', 'http://localhost:8081/cotizaciones/', 'USER', 300, 600, '', 'false');
+INSERT INTO `securitydb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('proveedores_app', 'proveedores_service', '$2a$10$q47yxGBXSS3gXOhpX3EdgOTVrAWGdjmbxuQMggJLizpsPs8mzANm6', 'read,write', 'password,refresh_token,client_credentials', 'http://localhost:8081/proveedores/', 'USER', 300, 600, '', 'false');
 
 COMMIT;

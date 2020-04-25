@@ -8,10 +8,10 @@
 
 # escape=\ (backslash)
 # Imagen base del Docker Registry para compilar nuestra aplicacion de seguridad
-FROM store/oracle/jdk:11
+FROM adoptopenjdk:11-jre-hotspot
 
 # Parametrizacion del nombre del archivo que genera spring boot
-ARG JAR_FILE=security-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=securityserver-0.0.1-SNAPSHOT.jar
 ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG BUILD_REVISION
@@ -23,9 +23,9 @@ ENV APP_HOME="/app" \
 # Informacion de la persona que mantiene la imagen
 LABEL org.opencontainers.image.created=$BUILD_DATE \
 	  org.opencontainers.image.authors="Brian Suarez Botia | Eduardo Franco Rivera | Jhon Celemin Florez | Wilman Ortiz Navarro " \
-	  org.opencontainers.image.url="https://gitlab.com/wortiz1027/laboratorio2/-/tree/master/cotizaciones/Dockerfile" \
+	  org.opencontainers.image.url="https://gitlab.com/wortiz1027/laboratorio2/-/blob/master/securityserver/Dockerfile" \
 	  org.opencontainers.image.documentation="" \
-	  org.opencontainers.image.source="https://gitlab.com/wortiz1027/laboratorio2/-/tree/master/cotizaciones/Dockerfile" \
+	  org.opencontainers.image.source="https://gitlab.com/wortiz1027/laboratorio2/-/blob/master/securityserver/Dockerfile" \
 	  org.opencontainers.image.version=$BUILD_VERSION \
 	  org.opencontainers.image.revision=$BUILD_REVISION \
 	  org.opencontainers.image.vendor="javeriana.io" \

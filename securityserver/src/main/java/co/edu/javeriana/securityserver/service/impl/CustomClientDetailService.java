@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-@Transactional
 @Service("customClientDetailsService")
 @SuppressWarnings("deprecation")
 public class CustomClientDetailService implements ClientDetailsService, ClientServicesDao {
@@ -27,6 +26,7 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     private OAuthClientRepository repository;
 
     @Override
+    @Transactional(readOnly = true)
     @InfoLogger(origen = "loadClientByClientId")
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
 
@@ -68,6 +68,7 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void createClient(OauthClientDetails client) {
         if (client != null){
             repository.save(client);
@@ -75,6 +76,7 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isUserAvailable(String clientId) {
         if (clientId != null){
             repository.isClientAvailable(clientId);
@@ -84,6 +86,7 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     }
 
     @Override
+    @Transactional(readOnly = true)
     public OauthClientDetails getClientById(String clientId) {
 
         OauthClientDetails client = null;
@@ -96,11 +99,13 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
     }
 
     @Override
+    @Transactional(readOnly = false)
     public OauthClientDetails update(OauthClientDetails client) {
         return null;
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(OauthClientDetails client) {
 
     }

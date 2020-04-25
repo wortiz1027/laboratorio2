@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-@Transactional
 @Service("customUserDetailsService")
 public class CustomUserDetailServices implements UserDetailsService, UsersServicesDao {
 
@@ -36,6 +35,7 @@ public class CustomUserDetailServices implements UserDetailsService, UsersServic
     private PasswordEncoder passwordEncoder;
 
     @Override
+    @Transactional(readOnly = false)
     public void createUser(Users u, List<Roles> roles) {
         u.setPassword(passwordEncoder.encode(u.getPassword()));
         u.setRoles(roles);
@@ -43,27 +43,32 @@ public class CustomUserDetailServices implements UserDetailsService, UsersServic
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isUserAvailable(String username) {
         return repository.isUserAvailable(username) > 0;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Users getUserByUsername(String username) {
         return repository.loadUserByUsername(username);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public Users update(Users u) {
         repository.saveAndFlush(u);
         return u;
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(Users u) {
         //repository.delete(u.getIdUser());
     }
 
     @Override
+    @Transactional(readOnly = true)
     @InfoLogger(origen = "loadUserByUsername")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = repository.loadUserByUsername(username);
