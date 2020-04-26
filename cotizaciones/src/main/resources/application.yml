@@ -13,6 +13,13 @@ server:
 # |         SPRING CONFIG
 # +-----------------------------------------------------
 spring:
+  security:
+    oauth2:
+      client:
+        clientId: proveedores_app
+        clientSecret: 8de6d4c46d616eb4c358ba6f63bb54dc
+      resource:
+        token-info-uri: http://security-service:8081/oauth/check_token
   thymeleaf:
     cache: false
   main:
