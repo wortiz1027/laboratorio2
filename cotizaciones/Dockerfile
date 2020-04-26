@@ -9,7 +9,8 @@
 
 # escape=\ (backslash)
 # Imagen base del Docker Registry para compilar nuestro microservicio
-FROM store/oracle/jdk:11
+#FROM store/oracle/jdk:11
+FROM adoptopenjdk:11-jre-hotspot
 
 # Parametrizacion del nombre del archivo que genera spring boot
 ARG JAR_FILE=cotizaciones-0.0.1-SNAPSHOT.jar

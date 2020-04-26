@@ -7,7 +7,7 @@
 # -              y otro para la base de datos de cotizaciones
 # -------------------------------------------------------------------
 
-version: '3.8'
+version: '3.7'
 services:
   db_cotizaciones:
     container_name: db_cotizaciones
