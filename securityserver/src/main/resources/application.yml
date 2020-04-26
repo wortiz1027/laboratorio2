@@ -57,7 +57,6 @@ spring:
       pool-name: customerPoolConetion
       connection-timeout: 60000
       maximum-pool-size: 5
-    type: com.zaxxer.hikari.HikariDataSource
   jmx:
     default-domain: startertest
 
