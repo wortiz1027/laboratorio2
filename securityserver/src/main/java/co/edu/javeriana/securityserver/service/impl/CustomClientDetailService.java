@@ -7,6 +7,8 @@ import co.edu.javeriana.securityserver.repository.OAuthClientRepository;
 import co.edu.javeriana.securityserver.service.dao.ClientServicesDao;
 import co.edu.javeriana.securityserver.utils.Constants;
 import co.edu.javeriana.securityserver.utils.InfoLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,8 @@ import org.springframework.util.StringUtils;
 @Service("customClientDetailsService")
 @SuppressWarnings("deprecation")
 public class CustomClientDetailService implements ClientDetailsService, ClientServicesDao {
+
+    Logger logger = LoggerFactory.getLogger(CustomClientDetailService.class);
 
     @Autowired
     private OAuthClientRepository repository;
@@ -47,6 +51,12 @@ public class CustomClientDetailService implements ClientDetailsService, ClientSe
         }
 
         Set<String> uris = new HashSet<String>(Arrays.asList(client.getWebServerRedirectUri().split(",")));
+
+        for (String s : uris) {
+                logger.info("URIS :: " + s);
+        }
+
+        logger.trace("CLIENT_SECRET :: " + client.getClientSecret());
 
         clientDetails.setClientId(client.getClientId());
         clientDetails.setScope(Arrays.asList(client.getScope().split(",")));

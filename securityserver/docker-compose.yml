@@ -24,31 +24,31 @@ services:
       - '6603:3306'
     volumes:
       - ./src/main/resources/databases/mysql-security-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-security-schema-v0.1.sql
-      - data_security:/var/lib/mysql
+      #- data_security:/var/lib/mysql
     networks:
       - backend
     healthcheck:
       test: ["CMD", "mysqladmin" ,"pinghttps://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/", "-h", "localhost"]
       timeout: 20s
       retries: 10
-  security-service:
-    image: security-service:latest
-    container_name: security-service
-    hostname: security-service
-    restart: always
-    ports:
-      - 8081:8081
-    networks:
-      - backend
-    depends_on:
-      - db_security
-    environment:
-      - SERVICE_PORTS=8081
-      - DATABASE_HOST=db_security
-      - DATABASE_USER=security
-      - DATABASE_PASSWORD=security2020++
-      - DATABASE_NAME=securitydb
-      - DATABASE_PORT=6603
+#  security-service:
+    #    image: security-service:latest
+    #container_name: security-service
+    #hostname: security-service
+    #restart: always
+        #ports:
+      #- 8081:8081
+        #networks:
+      #- backend
+        #depends_on:
+      #- db_security
+        #environment:
+        #- SERVICE_PORTS=8081
+        #- DATABASE_HOST=db_security
+        #- DATABASE_USER=security
+        #- DATABASE_PASSWORD=security2020++
+        #- DATABASE_NAME=securitydb
+      #- DATABASE_PORT=6603
 volumes:
   data_security:
 networks:

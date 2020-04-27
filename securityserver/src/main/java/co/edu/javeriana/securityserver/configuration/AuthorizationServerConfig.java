@@ -19,10 +19,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.approval.*;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -65,7 +70,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .tokenStore(tokenStore())
+                .userApprovalHandler(userApprovalHandler())
                 .authenticationManager(this.authenticationManager)
+                .authorizationCodeServices(authorizationCodeServices())
                 .userDetailsService(this.userDetailsService);
     }
 
@@ -85,16 +92,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // Con los datos del cliente en memoria
 			/*clients
 				.inMemory()
-					.withClient("clientapp")
-						.authorizedGrantTypes("password", "refresh_token", "client_credentials")
+					.withClient("cotizaciones_app")
+						.authorizedGrantTypes("authorization_code")
 						.authorities("USER")
-						.scopes("read", "write")
-						.resourceIds("microservice")
-						.secret(oauthClientPasswordEncoder.encode("8649168"))
+						.scopes("user_info")
+						.resourceIds("cotizaciones_service")
+						.secret(oauthClientPasswordEncoder.encode("957254c06ba79806dfa64591f6942613"))
 						.accessTokenValiditySeconds(300)
 						.refreshTokenValiditySeconds(600)
-						.autoApprove(false);*/
-
+						.autoApprove(true)
+                        .redirectUris("http://localhost:8082/cotizaciones/login/oauth2/code/");*/
     }
 
     @Bean
@@ -106,12 +113,39 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return tokenServices;
     }
 
-    /*@Bean
+    @Bean
     public PersistentTokenRepository customPersistentTokenRepository() {
         JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
         db.setDataSource(dataSource);
 
         return db;
-    }*/
+    }
+
+    @Bean
+    public UserApprovalHandler userApprovalHandler() {
+        ApprovalStoreUserApprovalHandler userApprovalHandler= new ApprovalStoreUserApprovalHandler();
+        userApprovalHandler.setApprovalStore(approvalStore());
+        userApprovalHandler.setClientDetailsService(clientDetailService);
+        userApprovalHandler.setRequestFactory(requestFactory());
+        return userApprovalHandler;
+    }
+
+    @Bean
+    public ApprovalStore approvalStore() {
+        return new JdbcApprovalStore(dataSource);
+    }
+
+    @Bean
+    public DefaultOAuth2RequestFactory requestFactory(){
+        return new DefaultOAuth2RequestFactory(clientDetailService);
+    }
+
+    @Bean
+    @Autowired
+    public ApprovalStore approvalStore(TokenStore tokenStore) throws Exception {
+        TokenApprovalStore store = new TokenApprovalStore();
+        store.setTokenStore(tokenStore);
+        return store;
+    }
 
 }

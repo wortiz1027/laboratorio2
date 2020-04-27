@@ -17,6 +17,15 @@ spring:
     banner-mode: console
   application:
     name: security
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: MYSQL
@@ -34,7 +43,8 @@ spring:
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://db_security:3306/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    #url: jdbc:mysql://db_security:3306/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    url: jdbc:mysql://localhost:6603/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
     username: security
     password: security2020++
     platform: mysql
@@ -66,6 +76,7 @@ spring:
 logging:
   level:
     org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
     org.springframework.data: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: DEBUG

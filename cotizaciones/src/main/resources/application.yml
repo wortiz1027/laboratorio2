@@ -16,10 +16,22 @@ spring:
   security:
     oauth2:
       client:
-        clientId: proveedores_app
-        clientSecret: 8de6d4c46d616eb4c358ba6f63bb54dc
-      resource:
-        token-info-uri: http://security-service:8081/oauth/check_token
+        registration:
+          cotizaciones-client:
+            client-id: cotizaciones_app
+            client-secret: 957254c06ba79806dfa64591f6942613
+            client-name: Auth Server
+            scope: read,write
+            provider: security-server
+            redirect-uri: http://localhost:8082/cotizaciones/login/oauth2/code/
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          security-server:
+            token-uri: http://localhost:8081/security/oauth/token
+            authorization-uri: http://localhost:8081/security/oauth/authorize
+            user-info-uri: http://localhost:8081/security/user/me
+            user-name-attribute: name
   thymeleaf:
     cache: false
   main:
@@ -51,8 +63,8 @@ spring:
       pool-name: cotizacionesPoolConetion
       connection-timeout: 60000
       maximum-pool-size: 5
-    jmx:
-      default-domain: startertest
+    #jmx:
+      #default-domain: startertest
 
 # +-----------------------------------------------------
 # |         SPRING LOGGIN CONFIG
@@ -61,6 +73,7 @@ logging:
   level:
     org.springframework.web: DEBUG
     org.springframework.data: DEBUG
+    org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
   pattern:
