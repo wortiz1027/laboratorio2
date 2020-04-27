@@ -8,6 +8,8 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+
 	<groupId>co.edu.javeriana</groupId>
 	<artifactId>cotizaciones</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -133,13 +135,20 @@
 					<groupId>org.junit.vintage</groupId>
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
+				<!-- https://stackoverflow.com/questions/49069991/dependency-org-jsonjsonjar-is-missing -->
+				<exclusion>
+					<groupId>org.json</groupId>
+					<artifactId>json</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-test</artifactId>
@@ -150,6 +159,26 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>2.4.1.RELEASE</version>
 		</dependency>
+
+		<!-- Agregadas por efranco: error Caused by: java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException -->
+		<!-- https://github.com/spring-guides/tut-spring-boot-oauth2/issues/68 -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<!-- JAXB needs javax.activation module (jdk9) -->
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>javax.activation-api</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
