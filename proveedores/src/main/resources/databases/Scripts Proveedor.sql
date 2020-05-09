@@ -1,7 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS `proveedordb` DEFAULT CHARACTER SET utf8 ;
 SHOW WARNINGS;
-USE `proveedordb` ;
-CREATE TABLE IF NOT EXISTS `proveedordb`.`catalogo` (
+USE `ofertasdb` ;
+CREATE TABLE IF NOT EXISTS `ofertasdb`.`catalogo` (
   `id_catalogo` INT NOT NULL AUTO_INCREMENT,
   `descripcion_catalogo` VARCHAR(1000) NOT NULL,
   `nombre_catalogo` VARCHAR(50) NOT NULL,
@@ -10,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `proveedordb`.`catalogo` (
 
 commit;
 
-CREATE TABLE IF NOT EXISTS `proveedordb`.`producto` (
+CREATE TABLE IF NOT EXISTS `ofertasdb`.`producto` (
   `id_producto` INT NOT NULL AUTO_INCREMENT,
   `id_catalogo` INT NOT NULL,
   `descripcion_producto` VARCHAR(1000) NOT NULL,
