@@ -28,9 +28,9 @@ spring:
             authorization-grant-type: authorization_code
         provider:
           security-server:
-            token-uri: http://localhost:8081/security/oauth/token
-            authorization-uri: http://localhost:8081/security/oauth/authorize
-            user-info-uri: http://localhost:8081/security/user/me
+            token-uri: http://${custom.security.hostname}:8081/security/oauth/token
+            authorization-uri: http://${custom.security.hostname}:8081/security/oauth/authorize
+            user-info-uri: http://${custom.security.hostname}:8081/security/user/me
             user-name-attribute: name
   thymeleaf:
     cache: false
@@ -39,7 +39,8 @@ spring:
   application:
     name: cotizaciones
   datasource:
-    url: jdbc:mysql://db_cotizaciones:3306/cotizacionesdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    #url: jdbc:mysql://db_cotizaciones:3306/cotizacionesdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    url: jdbc:mysql://localhost:6603/cotizacionesdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: cotizaciones
     password: cotizaciones2020++
@@ -63,8 +64,11 @@ spring:
       pool-name: cotizacionesPoolConetion
       connection-timeout: 60000
       maximum-pool-size: 5
-    #jmx:
-      #default-domain: startertest
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 # +-----------------------------------------------------
 # |         SPRING LOGGIN CONFIG
@@ -79,3 +83,12 @@ logging:
   pattern:
     console: "%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+custom:
+  rabbitmq:
+    exchange: javecoti.exchange
+    queue: javecoti.queue
+    routingkey: javecoti.routingkey
+  security:
+    #hostname: 192.168.99.100
+    hostname: localhost

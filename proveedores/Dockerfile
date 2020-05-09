@@ -9,7 +9,7 @@
 
 # escape=\ (backslash)
 # Imagen base del Docker Registry para compilar nuestra aplicacion
-FROM store/oracle/jdk:11
+FROM adoptopenjdk:11-jre-hotspot
 
 # Parametrizacion del nombre del archivo que genera spring boot
 ARG JAR_FILE=proveedores-0.0.1-SNAPSHOT.jar
@@ -19,7 +19,7 @@ ARG BUILD_REVISION
 
 ENV APP_HOME="/app" \
     JAVA_OPTS="" \
-	HTTP_PORT=8083
+	HTTP_PORT=8060
 
 # Informacion de la persona que mantiene la imagen
 LABEL org.opencontainers.image.created=$BUILD_DATE \
@@ -55,4 +55,4 @@ WORKDIR $APP_HOME
 ADD ./target/$JAR_FILE $APP_HOME/proveedores-service.jar
 
 # Ejecutanto el microservicio en el contenedor
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=qa -jar ${APP_HOME}/proveedores-service.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar ${APP_HOME}/proveedores-service.jar" ]

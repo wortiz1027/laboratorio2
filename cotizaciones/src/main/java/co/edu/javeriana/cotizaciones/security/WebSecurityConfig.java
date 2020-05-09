@@ -26,13 +26,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**")
-            .authorizeRequests()
-            .antMatchers("/", "/login**")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
+                .authorizeRequests()
+                .antMatchers("/", "/login**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
             .and()
-            .oauth2Login();
+                .oauth2Login()
+            .and()
+                .logout()
+                .deleteCookies()
+                .invalidateHttpSession(Boolean.TRUE)
+                .logoutSuccessUrl("/");
     }
 
     @Bean

@@ -18,10 +18,10 @@ public class RabbitMQSender {
     //private AmqpTemplate rabbitTemplate;
     private RabbitTemplate rabbitTemplate;
 
-    @Value("${javecoti.rabbitmq.exchange}")
+    @Value("${custom.rabbitmq.exchange}")
     private String exchange;
 
-    @Value("${javecoti.rabbitmq.routingkey}")
+    @Value("${custom.rabbitmq.routingkey}")
     private String routingkey;
 
     public void send(Cotizacion cotizacion) {
