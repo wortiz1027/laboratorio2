@@ -1,0 +1,10 @@
+# +-----------------------------------------------------
+# |         SERVER CONFIG
+# +-----------------------------------------------------
+server:
+  port: 8083
+  servlet:
+    context-path: /proveedor
+    session:
+      cookie:
+        name: UISESSION

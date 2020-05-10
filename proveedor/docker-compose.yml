@@ -1,0 +1,40 @@
+# -------------------------------------------------------------------
+# - DOCKER COMPOSE FILE
+# - AUTOR: Equipo 5
+# - FECHA: 20-Abril-2020
+# - DESCRIPCION: Docker compose file que permite la
+# -              creacion de 2 contendores uno para la aplicacion
+# -              y otro para la base de datos de cotizaciones
+# -------------------------------------------------------------------
+
+version: '3.7'
+services:
+  proveedor1:
+    image: proveedor-service:latest
+    container_name: proveedor1-service
+    hostname: proveedor1-service
+    restart: always
+    ports:
+      - 8083:8083
+    networks:
+      - backend
+    environment:
+      - SERVICE_PORTS=8083
+  proveedor2:
+    image: proveedor-service:latest
+    container_name: proveedor2-service
+    hostname: proveedor2-service
+    restart: always
+    ports:
+      - 8084:8083
+    networks:
+      - backend
+    environment:
+      - SERVICE_PORTS=8083
+networks:
+  backend:
+    driver: bridge
+    #external: true
+
+## Crear una red de comunicación en el contenedor
+# docker network create --driver bridge backend
