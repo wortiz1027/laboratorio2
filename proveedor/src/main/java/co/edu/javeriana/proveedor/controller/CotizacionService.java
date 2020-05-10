@@ -19,7 +19,7 @@ public class CotizacionService {
         return new ResponseEntity<String>("Hola mundo " + nombre, HttpStatus.OK);
     }*/
 
-    @PostMapping(path = "/cotizaciones",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/cotizaciones",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Cotizacion cotizar(@RequestBody Cotizacion cotizacion) {
         LOG.info("REST cotizar.cotizacion {}", cotizacion);
 

@@ -7,12 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class RabbitMQConfig {
-    private static final Logger LOG = LoggerFactory.getLogger(RabbitMQConfig.class);
+public class QuoteAppConfig {
+    private static final Logger LOG = LoggerFactory.getLogger(QuoteAppConfig.class);
 
-    @Value("${abcbank.rabbitmq.exchange}")
+    @Value("${quote.rabbitmq.exchange}")
     String exchange;
 
     @Value("${quote.rabbitmq.queue.sendquotes}")
@@ -49,5 +50,10 @@ public class RabbitMQConfig {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

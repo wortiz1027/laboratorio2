@@ -20,7 +20,7 @@ public class QuoteService {
     @Autowired
     RabbitMQSender rabbitMQSender;
 
-    @Value("${quote.rabbitmq.routingkey.uservalidate}")
+    @Value("${quote.rabbitmq.routingkey.sendquote}")
     String routingkeysendquote;
 
     @PostMapping(path = "/enviarCotizacion",consumes = MediaType.APPLICATION_JSON_VALUE)

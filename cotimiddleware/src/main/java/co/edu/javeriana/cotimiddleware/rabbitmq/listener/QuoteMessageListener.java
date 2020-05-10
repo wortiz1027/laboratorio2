@@ -3,6 +3,7 @@ package co.edu.javeriana.cotimiddleware.rabbitmq.listener;
 import co.edu.javeriana.cotimiddleware.model.Cotizacion;
 import co.edu.javeriana.cotimiddleware.rabbitmq.service.RabbitMQSender;
 import co.edu.javeriana.cotimiddleware.utils.ObjectAndByteCovertUtil;
+import co.edu.javeriana.cotimiddleware.utils.QuoteUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
@@ -12,7 +13,15 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class QuoteMessageListener {
@@ -20,6 +29,9 @@ public class QuoteMessageListener {
 
     @Autowired
     RabbitMQSender rabbitMQSender;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("${quote.rabbitmq.exchange}")
     String exchange;
@@ -34,13 +46,28 @@ public class QuoteMessageListener {
     ))
     public void validarCotizacionesProveedores(Message message) {
         LOG.info("Method.validarCotizacionesProveedores.Received {}", message);
-        Cotizacion cotizacion = (Cotizacion) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
+        final Cotizacion cotizacion = (Cotizacion) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
         //Invocar al proveedor 1
+        final String urlProveedor1 = "http://localhost:8083/proveedor/api/v1.0/cotizaciones";
+        final HttpEntity<Cotizacion> requestEntityresponseProveedor1 = QuoteUtil.encapsulateRequet(cotizacion);
+        ResponseEntity<Cotizacion> responseProveedor1 = restTemplate.exchange(urlProveedor1, HttpMethod.POST, requestEntityresponseProveedor1, Cotizacion.class);
+        LOG.info("Method.validarCotizacionesProveedores.Received {}", message);
+        Cotizacion cotizacionRs1 = responseProveedor1.getBody();
 
         //Invocar al proveedor 2
+        final String urlProveedor2 = "http://localhost:8084/proveedor/api/v1.0/cotizaciones";
+        final HttpEntity<Cotizacion> requestEntityresponseProveedor2 = QuoteUtil.encapsulateRequet(cotizacion);
+        ResponseEntity<Cotizacion> responseresponseProveedor2 = restTemplate.exchange(urlProveedor1, HttpMethod.POST, requestEntityresponseProveedor2, Cotizacion.class);
+        LOG.info("Method.validarCotizacionesProveedores.Received {}", message);
+        Cotizacion cotizacionRs2 = responseresponseProveedor2.getBody();
+
+        //Construimos una lista de cotizaciones con los precios entregados por cada uno de los proveedores
+        List<Cotizacion> cotizaciones = new ArrayList<Cotizacion>(0);
+        cotizaciones.add(cotizacionRs1);
+        cotizaciones.add(cotizacionRs2);
 
         LOG.info("Method.validarCotizacionesProveedores.Publishing...........");
-        rabbitMQSender.publishQuote(routingkeygetquote, cotizacion);
+        rabbitMQSender.publishQuoteWithPrices(routingkeygetquote, cotizaciones);
     }
 
     @RabbitListener(bindings = @QueueBinding(
@@ -48,10 +75,10 @@ public class QuoteMessageListener {
             exchange = @Exchange(value = "${quote.rabbitmq.exchange}"),
             key = "${quote.rabbitmq.routingkey.getquote}"
     ))
-    public void checkamounttopay(Message message) {
-        LOG.info("Method.checkamounttopay.Received {}", message);
-        Cotizacion cotizacion = (Cotizacion) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
-        //Invocar al sistema de cotización
+    public void obtenerResultadoCotizacionProveedores(Message message) {
+        LOG.info("Method.obtenerResultadoCotizacionProveedores.Received {}", message);
+        List<Cotizacion> cotizaciones = (List<Cotizacion>) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
+        //TODO Invocar al sistema de cotización
         LOG.info("Method.checkamounttopay.Publishing...........");
     }
 }

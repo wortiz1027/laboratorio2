@@ -1,14 +1,15 @@
 package co.edu.javeriana.cotimiddleware.utils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 
 public final class ObjectAndByteCovertUtil {
+    private static final Logger LOG = LoggerFactory.getLogger(ObjectAndByteCovertUtil.class);
 
     public static Object ByteToObject(byte[] bytes) {
+        LOG.info("Process.method.ByteToObject");
         Object obj = null;
         ByteArrayInputStream bi = null;
         ObjectInputStream oi = null;
@@ -18,7 +19,6 @@ public final class ObjectAndByteCovertUtil {
             oi = new ObjectInputStream(bi);
             obj = oi.readObject();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
             e.printStackTrace();
         } finally {
             if (null != bi)
@@ -39,6 +39,7 @@ public final class ObjectAndByteCovertUtil {
     }
 
     public static byte[] ObjectToByte(Object obj) {
+        LOG.info("Process.method.ObjectToByte");
         byte[] bytes = null;
         ByteArrayOutputStream bo = null;
         ObjectOutputStream oo = null;
@@ -49,7 +50,6 @@ public final class ObjectAndByteCovertUtil {
             oo.writeObject(obj);
             bytes = bo.toByteArray();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
             e.printStackTrace();
         } finally {
             if (null != bo) {
