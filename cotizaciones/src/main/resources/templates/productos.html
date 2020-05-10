@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout" th:with="titulo='Productos'">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
 <head>
     <meta charset="UTF-8">
     <title>Productos</title>
@@ -7,7 +7,13 @@
 <body>
 
     <div layout:fragment="content">
-        <h1>Catalogo de Productos</h1>
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Catalogo de Productos</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        </div>
+
         <div class="container">
             <div class="card-deck mb-3 text-center">
                 <div class="card mb-4 box-shadow">
