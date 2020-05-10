@@ -12,6 +12,9 @@ public class Catalogo {
 
     private String tipoCatalogo;
 
+    public Catalogo() {
+    }
+
     public Catalogo(BigDecimal idCatalogo, BigDecimal idProveedor, String nombreCatalogo, String tipoCatalogo) {
         this.idCatalogo = idCatalogo;
         this.idProveedor = idProveedor;

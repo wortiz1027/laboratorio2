@@ -1,6 +1,7 @@
 package co.edu.javeriana.cotizaciones.repository;
 
 import co.edu.javeriana.cotizaciones.dto.Catalogo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Repository
 public class CatalogoRepositoryImpl implements CatalogoRepository {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
