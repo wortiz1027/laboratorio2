@@ -23,9 +23,9 @@ public class Index {
         return modelAndView;
     }
 
-    @RequestMapping("/dashboard")
+    @RequestMapping("/productos")
     public String securedPage(Model model, Principal principal) {
-        return "dashboard";
+        return "productos";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
