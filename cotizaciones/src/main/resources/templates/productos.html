@@ -7,64 +7,41 @@
 <body>
 
     <div layout:fragment="content">
+        <form th:action='@{/cotizaciones}' method="POST" th:object="${wrapper}">
 
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Catalogo de Productos</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-        </div>
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Catalogo de Productos</h1>
+                <a href="cotizaciones" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cotizacion</a>
 
-        <div class="container">
-            <div class="card-deck mb-3 text-center">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Free</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 users included</li>
-                            <li>2 GB of storage</li>
-                            <li>Email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-                    </div>
-                </div>
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Pro</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>20 users included</li>
-                            <li>10 GB of storage</li>
-                            <li>Priority email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                <button type="submit" value="submit" class="btn btn-success">Submit</button>
+            </div>
+
+            <div class="container">
+                <div class="card-deck mb-3 text-center" th:each="productos: ${wrapper.getProductos()}">
+
+                    <div class="card mb-4 box-shadow" th:each="producto: ${productos}">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal" th:text="${producto.getNombreProducto()}">Free</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title" th:text="${producto.getPrecio()}">$0 <small class="text-muted">/ mo</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>10 users included</li>
+                                <li>2 GB of storage</li>
+                                <li>Email support</li>
+                                <li>Help center access</li>
+                            </ul>
+                            <input type="checkbox" id="seleccion" name="seleccion" th:value="${producto.getIdProducto()}" th:selected="${producto.seleccionado}" >
+                        </div>
                     </div>
                 </div>
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Enterprise</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>30 users included</li>
-                            <li>15 GB of storage</li>
-                            <li>Phone and email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-                    </div>
-                </div>
+
+
             </div>
 
 
-        </div>
+        </form>
 
     </div>
 

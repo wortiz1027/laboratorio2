@@ -29,7 +29,7 @@ public class ProductoRepository {
 
     public int deleteProductoById(BigDecimal idProducto) {
         return jdbcTemplate
-                .update("delete producto where id_producto = ?", idProducto);
+                .update("delete from producto where id_producto = ?", idProducto);
     }
 
     public List<Producto> findAll() {
@@ -41,7 +41,8 @@ public class ProductoRepository {
                                         rs.getBigDecimal("id_catalogo"),
                                         rs.getString("nombre_producto"),
                                         rs.getBigDecimal("precio"),
-                                        rs.getString("tipo_producto")
+                                        rs.getString("tipo_producto"),
+                                        Boolean.TRUE
                                 )
                 );
     }
@@ -56,7 +57,8 @@ public class ProductoRepository {
                                                 rs.getBigDecimal("id_catalogo"),
                                                 rs.getString("nombre_producto"),
                                                 rs.getBigDecimal("precio"),
-                                                rs.getString("tipo_producto")
+                                                rs.getString("tipo_producto"),
+                                                Boolean.FALSE
                                         )
                                 )
                 );

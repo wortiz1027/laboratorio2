@@ -9,16 +9,18 @@ public class Producto {
     private String nombreProducto;
     private BigDecimal precio;
     private String tipoProducto;
+    private boolean seleccionado;
 
     public Producto() {
     }
 
-    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, BigDecimal precio, String tipoProducto) {
+    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, BigDecimal precio, String tipoProducto, boolean seleccionado) {
         this.idProducto = idProducto;
         this.idCatalogo = idCatalogo;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
         this.tipoProducto = tipoProducto;
+        this.seleccionado = seleccionado;
     }
 
     public BigDecimal getIdProducto() {
@@ -59,5 +61,13 @@ public class Producto {
 
     public void setTipoProducto(String tipoProducto) {
         this.tipoProducto = tipoProducto;
+    }
+
+    public boolean isSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(boolean seleccionado) {
+        this.seleccionado = seleccionado;
     }
 }

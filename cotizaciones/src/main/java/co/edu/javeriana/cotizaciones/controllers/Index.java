@@ -23,11 +23,6 @@ public class Index {
         return modelAndView;
     }
 
-    @RequestMapping("/productos")
-    public String securedPage(Model model, Principal principal) {
-        return "productos";
-    }
-
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
