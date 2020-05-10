@@ -5,11 +5,8 @@ import java.math.BigDecimal;
 public class Catalogo {
 
     private BigDecimal idCatalogo;
-
     private BigDecimal idProveedor;
-
     private String nombreCatalogo;
-
     private String tipoCatalogo;
 
     public Catalogo() {
