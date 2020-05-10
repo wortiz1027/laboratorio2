@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/javecoti-rabbitmq/")
+@RequestMapping(value = "/api/v1.0")
 public class RabbitMQWebController {
     @Autowired
     RabbitMQSender rabbitMQSender;
