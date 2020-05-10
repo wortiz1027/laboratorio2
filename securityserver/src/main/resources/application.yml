@@ -42,14 +42,13 @@ spring:
         generate_statistic: true
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    #url: jdbc:mysql://db_security:3306/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
-    url: jdbc:mysql://localhost:6603/securitydb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
-    username: security
-    password: security2020++
+    driverClassName: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://db_cotizaciones:3306/cotizacionesdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    url: jdbc:mysql://localhost:6603/cotizacionesdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    username: cotizaciones
+    password: cotizaciones2020++
     platform: mysql
     initialization-mode: always
-    #data: classpath:databases/mysql/mysql-data-v0.1.sql
     hikari:
       initialization-fail-timeout: 0
       data-source-properties:
@@ -76,7 +75,7 @@ spring:
 logging:
   level:
     org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
+    org.springframework.security: TRACE
     org.springframework.data: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: DEBUG

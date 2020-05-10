@@ -7,7 +7,7 @@
 # -              y otro para la base de datos de proveedores
 # -------------------------------------------------------------------
 
-version: '3.8'
+version: '3.7'
 services:
   db_proveedores:
     container_name: db_proveedores
@@ -25,7 +25,7 @@ services:
       - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
       - data_proveedores:/var/lib/mysql
     networks:
-      - web
+      - backend
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -36,13 +36,13 @@ services:
     hostname: proveedores-service
     restart: always
     ports:
-      - 8083:8083
+      - 8060:8060
     networks:
-      - web
+      - backend
     depends_on:
       - db_proveedores
     environment:
-      - SERVICE_PORTS=8081
+      - SERVICE_PORTS=8060
       - DATABASE_HOST=db_proveedores
       - DATABASE_USER=proveedores
       - DATABASE_PASSWORD=proveedores2020++
@@ -51,5 +51,5 @@ services:
 volumes:
   data_proveedores:
 networks:
-  web:
-    driver: bridge
+  backend:
+    external: true

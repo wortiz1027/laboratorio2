@@ -21,8 +21,8 @@ services:
     ports:
       - '6603:3306'
     volumes:
-      - ./src/main/resources/databases/mysql/mysql-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-schema-v0.1.sql
-      - ./src/main/resources/databases/mysql/mysql-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-sdata-v0.1.sql
+      - ./src/main/resources/databases/mysql-ofertas-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-ofertas-schema-v0.1.sql
+      - ./src/main/resources/databases/mysql-security-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-security-schema-v0.1.sql
 #      - data_cotizaciones:/var/lib/mysql
     networks:
       - backend
@@ -30,26 +30,27 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-  cotizaciones:
-    image: cotizaciones-service:latest
-    container_name: cotizaciones-service
-    hostname: cotizaciones-service
-    restart: always
-    ports:
-      - 8082:8082
-    networks:
-      - backend
-    depends_on:
-      - db_cotizaciones
-    environment:
-      - SERVICE_PORTS=8082
-      - DATABASE_HOST=db_cotizaciones
-      - DATABASE_USER=cotizaciones
-      - DATABASE_PASSWORD=cotizaciones2020++
-      - DATABASE_NAME=cotizacionesdb
-      - DATABASE_PORT=6603
+#  cotizaciones:
+#    image: cotizaciones-service:latest
+#    container_name: cotizaciones-service
+#    hostname: cotizaciones-service
+#    restart: always
+#    ports:
+#      - 8082:8082
+#    networks:
+#      - backend
+#    depends_on:
+#      - db_cotizaciones
+#    environment:
+#      - SERVICE_PORTS=8082
+#      - DATABASE_HOST=db_cotizaciones
+#      - DATABASE_USER=cotizaciones
+#      - DATABASE_PASSWORD=cotizaciones2020++
+#      - DATABASE_NAME=cotizacionesdb
+#      - DATABASE_PORT=3306
+#      - DOMAIN_NAME=192.168.99.100
 volumes:
   data_cotizaciones:
 networks:
   backend:
-    driver: bridge
+    external: true

@@ -2,9 +2,9 @@
 # |         SERVER CONFIG
 # +-----------------------------------------------------
 server:
-  port: 8083
+  port: 8060
   servlet:
-    context-path: /proveedores
+    context-path: /apiproveedores
     session:
       cookie:
         name: UISESSION
@@ -40,7 +40,7 @@ spring:
         elideSetAutoCommits: true
         maintainTimeStats: false
       pool-name: proveedoresPoolConetion
-      connection-timeout: 60000
+      connection-timeout: 20000
       maximum-pool-size: 5
     jmx:
       default-domain: startertest
