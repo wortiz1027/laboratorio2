@@ -1,4 +1,4 @@
-package co.edu.javeriana.proveedor.controller;
+package co.edu.javeriana.proveedor.services;
 
 import co.edu.javeriana.proveedor.model.Cotizacion;
 import co.edu.javeriana.proveedor.utils.ProveedorUtil;

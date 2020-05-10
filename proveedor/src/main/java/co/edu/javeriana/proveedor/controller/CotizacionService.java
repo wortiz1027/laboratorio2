@@ -1,7 +1,7 @@
-package co.edu.javeriana.proveedor.services;
+package co.edu.javeriana.proveedor.controller;
 
-import co.edu.javeriana.proveedor.controller.CotizacionManagement;
 import co.edu.javeriana.proveedor.model.Cotizacion;
+import co.edu.javeriana.proveedor.services.CotizacionManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 //import org.springframework.http.HttpStatus;
