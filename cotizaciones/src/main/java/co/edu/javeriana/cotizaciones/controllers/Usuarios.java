@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class Usuarios {
@@ -48,12 +47,13 @@ public class Usuarios {
             usuario.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(usuario.getFechaNacimientoCadena()));
 
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-            int idUser = userRepository.crearUsers(usuario);
-
-            Users u = userRepository.findUsersByUserName(usuario.getUsername()).get();
-
+            //int idUser = userRepository.crearUsers(usuario);
+            //Users u = userRepository.findUsersByUserName(usuario.getUsername()).get();
+            //logger.info("id usuario: {}", idUser);
+            //UserRole userRole = new UserRole(u.getIdUser(), usuario.getRole().getIdRole());
+            BigDecimal idUser = userRepository.crearUsers(usuario);
             logger.info("id usuario: {}", idUser);
-            UserRole userRole = new UserRole(u.getIdUser(), usuario.getRole().getIdRole());
+            UserRole userRole = new UserRole(idUser, usuario.getRole().getIdRole());
             roleRepository.crearRoleUser(userRole);
         }
 
