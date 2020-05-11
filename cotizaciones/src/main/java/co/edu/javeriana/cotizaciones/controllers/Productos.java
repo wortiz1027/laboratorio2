@@ -22,14 +22,13 @@ public class Productos {
     @Autowired
     private ProductoRepository repository;
 
-
+    ProductosWrapper wrapper = new ProductosWrapper();
 
     @GetMapping("/productos")
     public String securedPage(Model model, Principal principal) {
-
         //List<Producto> productos = repository.findAll();
 
-        ProductosWrapper wrapper = new ProductosWrapper();
+        List<List<Producto>> w = new ArrayList<>();
 
         /*int tamanio = (productos.size() / 3) + 1;
 
@@ -46,17 +45,20 @@ public class Productos {
             }
 
             corte = corte + 3;
+            w.add(tmp);
+        }
             wrapper.getProductos().add(tmp);
         }*/
 
         model.addAttribute("wrapper", wrapper);
+        model.addAttribute("productos", w);
 
         return "productos";
     }
 
-    @PostMapping("/cotizaciones")
-    public String delete(@ModelAttribute ProductosWrapper wrapper, Model model){
-        logger.debug(" * * * * * * * * COTIZACIONES 1 * * * * * * * * * * * *");
+    @RequestMapping(value = "/cotizaciones", method = RequestMethod.POST)
+    public String contizar(@ModelAttribute("wrapper") ProductosWrapper wrapper, Model model){
+        logger.debug(" * * * * * * * * COTIZACIONES 1 * * * * * * * * * * * *" + wrapper.getProductos().size());
         if(wrapper != null){
             logger.debug(" * * * * * * * * COTIZACIONES 2 * * * * * * * * * * * *");
             for (List<Producto> productos : wrapper.getProductos()) {
@@ -70,4 +72,11 @@ public class Productos {
         return "blank";
     }
 
+    public ProductosWrapper getWrapper() {
+        return wrapper;
+    }
+
+    public void setWrapper(ProductosWrapper wrapper) {
+        this.wrapper = wrapper;
+    }
 }

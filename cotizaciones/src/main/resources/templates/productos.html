@@ -7,20 +7,18 @@
 <body>
 
     <div layout:fragment="content">
-        <form th:action='@{/cotizaciones}' method="POST" th:object="${wrapper}">
+        <form th:action='@{/cotizaciones}' method="post" th:object="${wrapper}">
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Catalogo de Productos</h1>
-                <a href="cotizaciones" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cotizacion</a>
-
-                <button type="submit" value="submit" class="btn btn-success">Submit</button>
+                <button type="submit" value="submit" class="btn btn-success">Cotizar</button>
             </div>
 
             <div class="container">
-                <div class="card-deck mb-3 text-center" th:each="productos: ${wrapper.getProductos()}">
+                <div class="card-deck mb-3 text-center" th:each="prds: ${productos}">
 
-                    <div class="card mb-4 box-shadow" th:each="producto: ${productos}">
+                    <div class="card mb-4 box-shadow" th:each="producto, stat : ${prds}">
                         <div class="card-header">
                             <h4 class="my-0 font-weight-normal" th:text="${producto.getNombreProducto()}">Free</h4>
                         </div>
@@ -32,7 +30,12 @@
                                 <li>Email support</li>
                                 <li>Help center access</li>
                             </ul>
-                            <input type="checkbox" id="seleccion" name="seleccion" th:value="${producto.getIdProducto()}" th:selected="${producto.seleccionado}" >
+                            <!--input type="checkbox" id="seleccion" name="seleccion" th:value="${producto.getIdProducto()}" th:checked="${producto.seleccionado}" -->
+
+                            <input type="checkbox"
+                                   th:value="${producto.getIdProducto()}"
+                                   th:checked="${producto.seleccionado}">
+
                         </div>
                     </div>
                 </div>
