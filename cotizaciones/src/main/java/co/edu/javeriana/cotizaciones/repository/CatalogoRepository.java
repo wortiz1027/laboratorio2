@@ -62,4 +62,19 @@ public class CatalogoRepository {
                                 ))
                 );
     }
+
+    public List<Catalogo> findCatalogoByIdUser(BigDecimal idUser) {
+        return jdbcTemplate
+                .query("select * from catalogo where id_user = ?",
+                        new Object[]{idUser},
+                        (rs, rowNum) ->
+                                new Catalogo(
+                                        rs.getBigDecimal("id_catalogo"),
+                                        rs.getBigDecimal("id_user"),
+                                        rs.getString("nombre_catalogo"),
+                                        rs.getString("tipo_catalogo"),
+                                        rs.getString("descripcion_catalogo")
+                                )
+                );
+    }
 }

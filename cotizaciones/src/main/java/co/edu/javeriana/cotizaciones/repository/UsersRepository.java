@@ -1,8 +1,11 @@
 package co.edu.javeriana.cotizaciones.repository;
 
+import co.edu.javeriana.cotizaciones.dto.Role;
 import co.edu.javeriana.cotizaciones.dto.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -16,9 +19,11 @@ public class UsersRepository {
     private JdbcTemplate jdbcTemplate;
 
     public int crearUsers(Users users) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
         return jdbcTemplate
                 .update("insert into users (cedula, nombres, apellidos, direccion, fecha_nacimiento, telefono, email, username, password, enable, account_non_expired, credential_non_expired, account_non_locket) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        users.getCedula(), users.getNombres(), users.getApellidos(), users.getDireccion(), users.getFechaNacimiento(), users.getTelefono(), users.getEmail(), users.getUsername(), users.getPassword(), users.getEnable(), users.getAccountNonExpired(), users.getCredentialNonExpired(), users.getAccountNonLocket());
+                        users.getCedula(), users.getNombres(), users.getApellidos(), users.getDireccion(), users.getFechaNacimiento(), users.getTelefono(), users.getEmail(), users.getUsername(), users.getPassword(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
     }
 
     public int actualizarUsers(Users users) {
@@ -42,6 +47,7 @@ public class UsersRepository {
                                         rs.getString("nombres"),
                                         rs.getString("apellidos"),
                                         rs.getString("direccion"),
+                                        null,
                                         rs.getDate("fecha_nacimiento"),
                                         rs.getBigDecimal("telefono"),
                                         rs.getString("email"),
@@ -50,7 +56,8 @@ public class UsersRepository {
                                         rs.getString("enable"),
                                         rs.getString("account_non_expired"),
                                         rs.getString("credential_non_expired"),
-                                        rs.getString("account_non_locket")
+                                        rs.getString("account_non_locket"),
+                                        new Role()
                                 )
                 );
     }
@@ -66,6 +73,7 @@ public class UsersRepository {
                                                 rs.getString("nombres"),
                                                 rs.getString("apellidos"),
                                                 rs.getString("direccion"),
+                                        null,
                                                 rs.getDate("fecha_nacimiento"),
                                                 rs.getBigDecimal("telefono"),
                                                 rs.getString("email"),
@@ -74,7 +82,8 @@ public class UsersRepository {
                                                 rs.getString("enable"),
                                                 rs.getString("account_non_expired"),
                                                 rs.getString("credential_non_expired"),
-                                                rs.getString("account_non_locket")
+                                                rs.getString("account_non_locket"),
+                                                new Role()
                                         )
                                 )
                 );
@@ -91,6 +100,7 @@ public class UsersRepository {
                                                 rs.getString("nombres"),
                                                 rs.getString("apellidos"),
                                                 rs.getString("direccion"),
+                                        null,
                                                 rs.getDate("fecha_nacimiento"),
                                                 rs.getBigDecimal("telefono"),
                                                 rs.getString("email"),
@@ -99,7 +109,8 @@ public class UsersRepository {
                                                 rs.getString("enable"),
                                                 rs.getString("account_non_expired"),
                                                 rs.getString("credential_non_expired"),
-                                                rs.getString("account_non_locket")
+                                                rs.getString("account_non_locket"),
+                                                new Role()
                                         )
                                 )
                 );

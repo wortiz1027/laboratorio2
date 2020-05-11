@@ -34,10 +34,10 @@ public class Index {
         return new ModelAndView ("redirect:/login?logout");
     }
 
-    @GetMapping("/register")
+    /*@GetMapping("/register")
     public String register(Model model){
         return "register";
-    }
+    }*/
 
     /*@RequestMapping(value="/dashboard", method = RequestMethod.GET)
     public ModelAndView home(){

@@ -105,7 +105,7 @@ public class Productos {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForObject(uri, cotizacion, Cotizacion.class);
 
-        return "blank";
+        return "successPage";
     }
 
     public ProductosWrapper getWrapper() {
