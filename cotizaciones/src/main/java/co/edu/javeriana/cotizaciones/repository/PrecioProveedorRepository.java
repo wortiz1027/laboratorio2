@@ -15,53 +15,49 @@ public class PrecioProveedorRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    /*public int crearProducto(PrecioProveedor producto) {
+    public int crearPrecioProveedor(PrecioProveedor precioProveedor) {
         return jdbcTemplate
-                .update("insert into producto (id_catalogo, nombre_producto, descripcion_producto, tipo_producto) values (?,?,?,?)",
-                        producto.getIdCatalogo(), producto.getNombreProducto(), producto.getDescripcionProducto(), producto.getTipoProducto());
+                .update("insert into precio_proveedor (id_user, id_producto, precio) values (?,?,?)",
+                        precioProveedor.getIdUser(), precioProveedor.getIdProducto(), precioProveedor.getPrecio());
     }
 
-    public int actualizarProducto(PrecioProveedor producto) {
+    public int actualizarProducto(PrecioProveedor precioProveedor) {
         return jdbcTemplate
-                .update("update producto set id_catalogo = ?, nombre_producto = ?, descripcion_producto = ?, tipo_producto = ? where id_producto = ?",
-                        producto.getIdCatalogo(), producto.getNombreProducto(), producto.getTipoProducto(), producto.getTipoProducto(), producto.getIdProducto());
+                .update("update precio_proveedor set id_user = ?, id_producto = ?, precio = ? where id_precio_proveedor = ?",
+                        precioProveedor.getIdUser(), precioProveedor.getIdProducto(), precioProveedor.getPrecio(), precioProveedor.getIdPrecioProveedor());
     }
 
-    public int deleteProductoById(BigDecimal idProducto) {
+    public int deletePrecioProveedorById(BigDecimal idPrecioProveedor) {
         return jdbcTemplate
-                .update("delete from producto where id_producto = ?", idProducto);
+                .update("delete from precio_proveedor where id_precio_proveedor = ?", idPrecioProveedor);
     }
 
     public List<PrecioProveedor> findAll() {
         return jdbcTemplate
-                .query("select * from producto",
+                .query("select * from precio_proveedor",
                         (rs, rowNum) ->
                                 new PrecioProveedor(
+                                        rs.getBigDecimal("id_precio_proveedor"),
+                                        rs.getBigDecimal("id_user"),
                                         rs.getBigDecimal("id_producto"),
-                                        rs.getBigDecimal("id_catalogo"),
-                                        rs.getString("nombre_producto"),
-                                        rs.getString("descripcion_producto"),
-                                        rs.getString("tipo_producto"),
-                                        null
+                                        rs.getBigDecimal("precio")
                                 )
                 );
     }
 
-    public Optional<PrecioProveedor> findPrecioProveedorById(BigDecimal idProducto) {
+    public Optional<PrecioProveedor> findPrecioProveedorById(BigDecimal idPrecioProveedor) {
         return jdbcTemplate
-                .queryForObject("select * from precio_proveedor where id_producto = ?",
-                        new Object[]{idProducto},
+                .queryForObject("select * from precio_proveedor where id_precio_proveedor = ?",
+                        new Object[]{idPrecioProveedor},
                         (rs, rowNum) ->
                                 Optional.of(new PrecioProveedor(
+                                                rs.getBigDecimal("id_precio_proveedor"),
+                                                rs.getBigDecimal("id_user"),
                                                 rs.getBigDecimal("id_producto"),
-                                                rs.getBigDecimal("id_catalogo"),
-                                                rs.getString("nombre_producto"),
-                                                rs.getString("descripcion_producto"),
-                                                rs.getString("tipo_producto"),
-                                        null
+                                                rs.getBigDecimal("precio")
                                         )
                                 )
                 );
-    }*/
+    }
 
 }
