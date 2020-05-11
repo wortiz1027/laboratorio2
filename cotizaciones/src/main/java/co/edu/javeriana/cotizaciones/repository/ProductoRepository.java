@@ -15,7 +15,7 @@ public class ProductoRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearProducto(Producto producto) {
+    /*public int crearProducto(Producto producto) {
         return jdbcTemplate
                 .update("insert into producto (id_catalogo, nombre_producto, precio, tipo_producto) values (?,?,?,?)",
                         producto.getIdCatalogo(), producto.getNombreProducto(), producto.getPrecio(), producto.getTipoProducto());
@@ -42,7 +42,7 @@ public class ProductoRepository {
                                         rs.getString("nombre_producto"),
                                         rs.getBigDecimal("precio"),
                                         rs.getString("tipo_producto"),
-                                        Boolean.TRUE
+                                        Boolean.FALSE
                                 )
                 );
     }
@@ -62,6 +62,6 @@ public class ProductoRepository {
                                         )
                                 )
                 );
-    }
+    }*/
 
 }

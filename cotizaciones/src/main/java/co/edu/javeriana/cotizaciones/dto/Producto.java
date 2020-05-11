@@ -1,26 +1,27 @@
 package co.edu.javeriana.cotizaciones.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Producto {
 
     private BigDecimal idProducto;
     private BigDecimal idCatalogo;
     private String nombreProducto;
-    private BigDecimal precio;
     private String tipoProducto;
-    private boolean seleccionado;
+    private String descripcionProducto;
+    private List<Cotizacion> cotizaciones;
 
     public Producto() {
     }
 
-    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, BigDecimal precio, String tipoProducto, boolean seleccionado) {
+    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, String tipoProducto, String descripcionProducto, List<Cotizacion> cotizaciones) {
         this.idProducto = idProducto;
         this.idCatalogo = idCatalogo;
         this.nombreProducto = nombreProducto;
-        this.precio = precio;
         this.tipoProducto = tipoProducto;
-        this.seleccionado = seleccionado;
+        this.descripcionProducto = descripcionProducto;
+        this.cotizaciones = cotizaciones;
     }
 
     public BigDecimal getIdProducto() {
@@ -47,14 +48,6 @@ public class Producto {
         this.nombreProducto = nombreProducto;
     }
 
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
     public String getTipoProducto() {
         return tipoProducto;
     }
@@ -63,11 +56,19 @@ public class Producto {
         this.tipoProducto = tipoProducto;
     }
 
-    public boolean isSeleccionado() {
-        return seleccionado;
+    public String getDescripcionProducto() {
+        return descripcionProducto;
     }
 
-    public void setSeleccionado(boolean seleccionado) {
-        this.seleccionado = seleccionado;
+    public void setDescripcionProducto(String descripcionProducto) {
+        this.descripcionProducto = descripcionProducto;
+    }
+
+    public List<Cotizacion> getCotizaciones() {
+        return cotizaciones;
+    }
+
+    public void setCotizaciones(List<Cotizacion> cotizaciones) {
+        this.cotizaciones = cotizaciones;
     }
 }

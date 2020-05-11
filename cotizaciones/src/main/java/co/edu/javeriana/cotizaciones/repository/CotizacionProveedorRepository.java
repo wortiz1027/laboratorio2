@@ -1,6 +1,5 @@
 package co.edu.javeriana.cotizaciones.repository;
 
-import co.edu.javeriana.cotizaciones.dto.CotizacionProveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,7 +14,7 @@ public class CotizacionProveedorRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearCotizacionProveedor(CotizacionProveedor cotizacionProveedor) {
+    /*public int crearCotizacionProveedor(CotizacionProveedor cotizacionProveedor) {
         return jdbcTemplate
                 .update("insert into cotizacion_proveedor (id_cotizacion_cliente, fecha_cotizacion) values (?,?)",
                         cotizacionProveedor.getIdCotizacionCliente(), cotizacionProveedor.getFechaCotizacion());
@@ -55,5 +54,5 @@ public class CotizacionProveedorRepository {
                                         rs.getDate("fecha_cotizacion")
                                 ))
                 );
-    }
+    }*/
 }
