@@ -80,4 +80,29 @@ public class UsersRepository {
                 );
     }
 
+    public Optional<Users> findUsersByUserName(String username) {
+        return jdbcTemplate
+                .queryForObject("select * from users where username = ?",
+                        new Object[]{username},
+                        (rs, rowNum) ->
+                                Optional.of(new Users(
+                                                rs.getBigDecimal("id_user"),
+                                                rs.getBigDecimal("cedula"),
+                                                rs.getString("nombres"),
+                                                rs.getString("apellidos"),
+                                                rs.getString("direccion"),
+                                                rs.getDate("fecha_nacimiento"),
+                                                rs.getBigDecimal("telefono"),
+                                                rs.getString("email"),
+                                                rs.getString("username"),
+                                                rs.getString("password"),
+                                                rs.getString("enable"),
+                                                rs.getString("account_non_expired"),
+                                                rs.getString("credential_non_expired"),
+                                                rs.getString("account_non_locket")
+                                        )
+                                )
+                );
+    }
+
 }
