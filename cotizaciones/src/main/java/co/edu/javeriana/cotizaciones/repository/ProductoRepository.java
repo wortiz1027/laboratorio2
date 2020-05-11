@@ -42,7 +42,7 @@ public class ProductoRepository {
                                         rs.getString("nombre_producto"),
                                         rs.getBigDecimal("precio"),
                                         rs.getString("tipo_producto"),
-                                        Boolean.TRUE
+                                        Boolean.FALSE
                                 )
                 );
     }
