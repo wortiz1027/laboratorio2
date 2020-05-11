@@ -10594,9 +10594,9 @@
 										"$ref": "AAAAAAFyAYNWya6IcHw="
 									},
 									"font": "Arial;13;1",
-									"left": 512,
-									"top": 157,
-									"width": 215.64990234375,
+									"left": 464,
+									"top": 149,
+									"width": 233.708984375,
 									"height": 13,
 									"text": "PrecioProveedor"
 								},
@@ -10620,9 +10620,9 @@
 												"$ref": "AAAAAAFyAYREJ67AhoA="
 											},
 											"font": "Arial;13;0",
-											"left": 517,
-											"top": 180,
-											"width": 205.64990234375,
+											"left": 469,
+											"top": 172,
+											"width": 223.708984375,
 											"height": 13
 										},
 										{
@@ -10635,9 +10635,9 @@
 												"$ref": "AAAAAAFyAYSE867HWJw="
 											},
 											"font": "Arial;13;0",
-											"left": 517,
-											"top": 195,
-											"width": 205.64990234375,
+											"left": 469,
+											"top": 187,
+											"width": 223.708984375,
 											"height": 13
 										},
 										{
@@ -10650,9 +10650,9 @@
 												"$ref": "AAAAAAFyAYSZxq7OsNw="
 											},
 											"font": "Arial;13;0",
-											"left": 517,
-											"top": 210,
-											"width": 205.64990234375,
+											"left": 469,
+											"top": 202,
+											"width": 223.708984375,
 											"height": 13
 										},
 										{
@@ -10665,23 +10665,23 @@
 												"$ref": "AAAAAAFyAYWJoa7YuCo="
 											},
 											"font": "Arial;13;0",
-											"left": 517,
-											"top": 225,
-											"width": 205.64990234375,
+											"left": 469,
+											"top": 217,
+											"width": 223.708984375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 512,
-									"top": 175,
-									"width": 215.64990234375,
+									"left": 464,
+									"top": 167,
+									"width": 233.708984375,
 									"height": 68
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 512,
-							"top": 152,
-							"width": 215.64990234375,
+							"left": 464,
+							"top": 144,
+							"width": 233.708984375,
 							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAFyAYNWya6Jo9Y="
@@ -10708,8 +10708,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 705,
-									"top": 429,
+									"left": 735,
+									"top": 321,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -10742,8 +10742,8 @@
 										"$ref": "AAAAAAFyAYOuvq6YGx0="
 									},
 									"font": "Arial;13;0",
-									"left": 705,
-									"top": 261,
+									"left": 565,
+									"top": 253,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -10760,7 +10760,7 @@
 								"$ref": "AAAAAAFxodtv1X02Euo="
 							},
 							"lineStyle": 2,
-							"points": "784:436;720:436;720:242",
+							"points": "784:436;736:436;736:312;580:312;580:234",
 							"nameLabel": {
 								"$ref": "AAAAAAFyAYOuvq6Z+V8="
 							},
@@ -10789,7 +10789,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 421,
+									"left": 397,
 									"top": 185,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -10823,7 +10823,7 @@
 										"$ref": "AAAAAAFyAYPV2a6u/rw="
 									},
 									"font": "Arial;13;0",
-									"left": 486,
+									"left": 438,
 									"top": 185,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -10841,7 +10841,7 @@
 								"$ref": "AAAAAAFyAXonTa0+xB8="
 							},
 							"lineStyle": 2,
-							"points": "330:206;512:206",
+							"points": "330:206;464:206",
 							"nameLabel": {
 								"$ref": "AAAAAAFyAYPV2a6v/8k="
 							},
@@ -13797,7 +13797,8 @@
 							},
 							"name": "id_precio_proveedor",
 							"type": "NUMBER",
-							"length": 0
+							"length": 0,
+							"primaryKey": true
 						},
 						{
 							"_type": "ERDColumn",

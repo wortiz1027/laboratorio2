@@ -24,6 +24,8 @@ public class Catalogos {
     @GetMapping("/catalogos")
     public String securedPage(Model model, Principal principal) {
         Catalogo catalogo = new Catalogo();
+
+        //catalogo.setIdUser();
         model.addAttribute("catalogo", catalogo);
 
         return "catalogos";
@@ -34,7 +36,7 @@ public class Catalogos {
 
         if(catalogo != null){
             logger.info("catalogo: {}", catalogo.getNombreCatalogo());
-            //repository.crearCatalogo(catalogo);
+            repository.crearCatalogo(catalogo);
         }
 
         return "blank";

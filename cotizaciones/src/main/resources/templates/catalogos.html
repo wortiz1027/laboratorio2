@@ -7,17 +7,31 @@
 <body>
 
     <div layout:fragment="content">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Catalogos</h1>
+        </div>
         <form th:action='@{/registrarCatalogo}' method="POST" th:object="${catalogo}">
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Catalogos</h1>
-                <a href="registrarCatalogo" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Registrar</a>
-
+            <div>
                 <div class="col-md-6 form-group">
-                    <label>idProveedor</label>
-                    <input type="text" class="form-control" th:field="${catalogo.idProveedor}">
+                    <label>Proveedor</label>
+                    <input type="text" class="form-control" th:field="*{idUser}">
                 </div>
-
+                <div class="col-md-6 form-group">
+                    <label>Nombre Catalogo</label>
+                    <input type="text" class="form-control" th:field="*{nombreCatalogo}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Tipo Catalogo</label>
+                    <select th:field="*{tipoCatalogo}">
+                        <option th:value="'Servicios'" th:text="Servicios"></option>
+                        <option th:value="'Productos'" th:text="Productos"></option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Descripción Catalogo</label>
+                    <input type="text" class="form-control" th:field="*{descripcionCatalogo}">
+                </div>
                 <button type="submit" value="submit" class="btn btn-success">Submit</button>
             </div>
         </form>
