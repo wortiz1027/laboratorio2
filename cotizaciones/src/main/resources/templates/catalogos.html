@@ -14,10 +14,6 @@
         <form th:action='@{/registrarCatalogo}' method="POST" th:object="${catalogo}">
             <div>
                 <div class="col-md-6 form-group">
-                    <label>Proveedor</label>
-                    <input type="text" class="form-control" th:field="*{idUser}">
-                </div>
-                <div class="col-md-6 form-group">
                     <label>Nombre Catalogo</label>
                     <input type="text" class="form-control" th:field="*{nombreCatalogo}">
                 </div>
