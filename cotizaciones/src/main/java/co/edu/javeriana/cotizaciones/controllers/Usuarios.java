@@ -49,8 +49,11 @@ public class Usuarios {
 
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
             int idUser = userRepository.crearUsers(usuario);
+
+            Users u = userRepository.findUsersByUserName(usuario.getUsername()).get();
+
             logger.info("id usuario: {}", idUser);
-            UserRole userRole = new UserRole(new BigDecimal(idUser), usuario.getRole().getIdRole());
+            UserRole userRole = new UserRole(u.getIdUser(), usuario.getRole().getIdRole());
             roleRepository.crearRoleUser(userRole);
         }
 
