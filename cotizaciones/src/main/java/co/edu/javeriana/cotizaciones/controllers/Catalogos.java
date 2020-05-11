@@ -1,7 +1,9 @@
 package co.edu.javeriana.cotizaciones.controllers;
 
 import co.edu.javeriana.cotizaciones.dto.Catalogo;
+import co.edu.javeriana.cotizaciones.dto.Users;
 import co.edu.javeriana.cotizaciones.repository.CatalogoRepository;
+import co.edu.javeriana.cotizaciones.repository.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +21,32 @@ public class Catalogos {
     Logger logger = LoggerFactory.getLogger(Catalogos.class);
 
     @Autowired
-    private CatalogoRepository repository;
+    private CatalogoRepository catalogoRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/catalogos")
     public String securedPage(Model model, Principal principal) {
         Catalogo catalogo = new Catalogo();
 
-        //catalogo.setIdUser();
         model.addAttribute("catalogo", catalogo);
 
         return "catalogos";
     }
 
     @PostMapping("/registrarCatalogo")
-    public String savePage(@ModelAttribute("catalogo") Catalogo catalogo, Model model) {
+    public String savePage(@ModelAttribute("catalogo") Catalogo catalogo, Model model, Principal principal) {
+
+        Users usuario = usersRepository.findUsersByUserName(principal.getName()).orElseThrow();
+
+
+        logger.info("usuario id: {}", usuario.getIdUser());
+        catalogo.setIdUser(usuario.getIdUser());
 
         if(catalogo != null){
             logger.info("catalogo: {}", catalogo.getNombreCatalogo());
-            repository.crearCatalogo(catalogo);
+            catalogoRepository.crearCatalogo(catalogo);
         }
 
         return "blank";
