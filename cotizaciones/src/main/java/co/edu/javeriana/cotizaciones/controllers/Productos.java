@@ -26,11 +26,12 @@ public class Productos {
 
     @GetMapping("/productos")
     public String securedPage(Model model, Principal principal) {
-        List<Producto> productos = repository.findAll();
+        //List<Producto> productos = repository.findAll();
 
         List<List<Producto>> w = new ArrayList<>();
 
-        int tamanio = (productos.size() / 3) + 1;
+        /*int tamanio = (productos.size() / 3) + 1;
+
         int corte = 0;
 
         for (int i = 0; i < tamanio; i++) {
@@ -46,6 +47,8 @@ public class Productos {
             corte = corte + 3;
             w.add(tmp);
         }
+            wrapper.getProductos().add(tmp);
+        }*/
 
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("productos", w);
@@ -62,7 +65,7 @@ public class Productos {
                 logger.debug(" * * * * * * * * COTIZACIONES 3 * * * * * * * * * * * *");
                 for(Producto producto : productos){
                     logger.debug(" * * * * * * * * COTIZACIONES 4 * * * * * * * * * * * *");
-                    logger.debug(producto.getNombreProducto() + ": " + producto.isSeleccionado());
+                    //logger.debug(producto.getNombreProducto() + ": " + producto.isSeleccionado());
                 }
             }
         }

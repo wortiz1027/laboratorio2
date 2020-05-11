@@ -1,7 +1,5 @@
 package co.edu.javeriana.cotizaciones.repository;
 
-import co.edu.javeriana.cotizaciones.dto.Catalogo;
-import co.edu.javeriana.cotizaciones.dto.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,7 +14,7 @@ public class ClienteRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearCliente(Cliente cliente) {
+    /*public int crearCliente(Cliente cliente) {
         return jdbcTemplate
                 .update("insert into cliente (id_usuario, nombres, apellidos, email, telefono) values (?,?,?,?,?)",
                         cliente.getIdUsuario(), cliente.getNombres(), cliente.getApellidos(), cliente.getEmail(), cliente.getTelefono());
@@ -62,5 +60,5 @@ public class ClienteRepository {
                                         rs.getString("telefono"))
                                 )
                 );
-    }
+    }*/
 }

@@ -36,27 +36,11 @@ CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`catalogo` (
   `id_proveedor` INT NOT NULL,
   `nombre_catalogo` VARCHAR(50) NOT NULL,
   `tipo_catalogo` VARCHAR(20) NOT NULL,
+  `descripcion_catalogo` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`id_catalogo`));
   
 commit;
-  
-CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`cotizacion_cliente` (
-  `id_cotizacion_cliente` INT NOT NULL AUTO_INCREMENT,
-  `id_cliente` INT NOT NULL,
-  `id_cotizacion_proveedor` INT NOT NULL,
-  `fecha_cotizacion` DATETIME NOT NULL,
-  PRIMARY KEY (`id_cotizacion_cliente`));
-  
-commit;
-  
-CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`cotizacion_proveedor` (
-  `id_cotizacion_proveedor` INT NOT NULL AUTO_INCREMENT,
-  `id_cotizacion_cliente` INT NOT NULL,
-  `fecha_cotizacion` DATETIME NOT NULL,
-  PRIMARY KEY (`id_cotizacion_proveedor`));
-  
-commit;
-  
+
 CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`producto` (
   `id_producto` INT NOT NULL AUTO_INCREMENT,
   `id_catalogo` INT NOT NULL,
@@ -67,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`producto` (
   
 commit;
   
-CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`producto_cotizacion_proveedor` (
-  `id_producto_cotizacion_proveedor` INT NOT NULL AUTO_INCREMENT,
-  `id_catalogo` INT NOT NULL,
-  `id_producto` INT NOT NULL,
-  PRIMARY KEY (`id_producto_cotizacion_proveedor`));
+CREATE TABLE IF NOT EXISTS `cotizacionesdb`.`cotizacion_cliente_producto` (
+  `id_cotizacion_cliente_producto` INT NOT NULL AUTO_INCREMENT,
+  `id_cotizacion_cliente` INT NOT NULL,
+  `id_producto`INT NOT NULL,
+  PRIMARY KEY (`id_cotizacion_cliente_producto`));
   
 commit;

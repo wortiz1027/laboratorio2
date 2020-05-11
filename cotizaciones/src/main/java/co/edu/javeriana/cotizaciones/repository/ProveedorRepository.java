@@ -1,6 +1,5 @@
 package co.edu.javeriana.cotizaciones.repository;
 
-import co.edu.javeriana.cotizaciones.dto.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,7 +14,7 @@ public class ProveedorRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearProveedor(Proveedor proveedor) {
+    /*public int crearProveedor(Proveedor proveedor) {
         return jdbcTemplate
                 .update("insert into proveedor (id_usuario, nombre_proveedor, identificacion_proveedor, telefono_proveedor) values (?,?,?,?)",
                         proveedor.getIdUsuario(), proveedor.getNombreProveedor(), proveedor.getIdentificacionProveedor(), proveedor.getTelefonoProveedor());
@@ -60,5 +59,5 @@ public class ProveedorRepository {
                                         )
                                 )
                 );
-    }
+    }*/
 }
