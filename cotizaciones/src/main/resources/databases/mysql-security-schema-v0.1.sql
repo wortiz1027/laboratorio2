@@ -197,6 +197,8 @@ USE `cotizacionesdb`;
 -- username: admin
 -- password: seguridad
 INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 9645167, 'Administrator', 'Administrator', 'Calle 123', '1984-10-27', 301638457, 'administrator@localhost.co', 'admin', '$2a$10$.eFm7QuqWUg38t83B8RWseEwmb8bG9HuYltL/ogJqWmoX42q3fGXm', 'true', 'true', 'true', 'true');
+INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 900342297, 'acalle', 'Arturo Calle', 'Calle 456', '1984-10-27', 301638457, 'admin@acalle.co', 'acalle', '$2a$10$.eFm7QuqWUg38t83B8RWseEwmb8bG9HuYltL/ogJqWmoX42q3fGXm', 'true', 'true', 'true', 'true');
+INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 891401345, 'avo5', 'Alberto Vo5', 'Calle 789', '1984-10-27', 301638457, 'avo5@avo5.com.co', 'avo5', '$2a$10$.eFm7QuqWUg38t83B8RWseEwmb8bG9HuYltL/ogJqWmoX42q3fGXm', 'true', 'true', 'true', 'true');
 
 COMMIT;
 
@@ -208,7 +210,7 @@ START TRANSACTION;
 USE `cotizacionesdb`;
 INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (2, 'ROLE_USER');
-INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (3, 'ROLE_GUEST');
+INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (3, 'ROLE_PROVEEDOR');
 
 COMMIT;
 
@@ -221,6 +223,9 @@ USE `cotizacionesdb`;
 INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 1);
 INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 2);
 INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 3);
+
+INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (2, 3);
+INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (3, 3);
 
 COMMIT;
 

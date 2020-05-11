@@ -11,17 +11,19 @@ public class Producto {
     private String tipoProducto;
     private String descripcionProducto;
     private List<PrecioProveedor> precios;
+    private Boolean selected;
 
     public Producto() {
     }
 
-    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, String tipoProducto, String descripcionProducto, List<PrecioProveedor> precios) {
+    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, String tipoProducto, String descripcionProducto, List<PrecioProveedor> precios, Boolean selected) {
         this.idProducto = idProducto;
         this.idCatalogo = idCatalogo;
         this.nombreProducto = nombreProducto;
         this.tipoProducto = tipoProducto;
         this.descripcionProducto = descripcionProducto;
         this.precios = precios;
+        this.selected = selected;
     }
 
     public BigDecimal getIdProducto() {
@@ -70,5 +72,13 @@ public class Producto {
 
     public void setPrecios(List<PrecioProveedor> precios) {
         this.precios = precios;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }
