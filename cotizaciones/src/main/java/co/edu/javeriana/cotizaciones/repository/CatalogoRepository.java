@@ -17,7 +17,7 @@ public class CatalogoRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearCatalogo(Catalogo catalogo) {
+/*    public int crearCatalogo(Catalogo catalogo) {
         return jdbcTemplate
                 .update("insert into catalogo (id_proveedor, nombre_catalogo, tipo_catalogo) values (?,?,?)",
                         catalogo.getIdProveedor(), catalogo.getNombreCatalogo(), catalogo.getTipoCatalogo());
@@ -59,5 +59,5 @@ public class CatalogoRepository {
                                         rs.getString("tipo_catalogo"))
                                 )
                 );
-    }
+    }*/
 }

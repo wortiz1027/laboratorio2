@@ -1,6 +1,5 @@
 package co.edu.javeriana.cotizaciones.repository;
 
-import co.edu.javeriana.cotizaciones.dto.ProductoCotizacionProveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,7 +14,7 @@ public class ProductoCotizacionProveedorRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int crearProductoCotizacionProveedor(ProductoCotizacionProveedor productoCotizacionProveedor) {
+    /*public int crearProductoCotizacionProveedor(ProductoCotizacionProveedor productoCotizacionProveedor) {
         return jdbcTemplate
                 .update("insert into producto_cotizacion_proveedor (id_catalogo, id_producto) values (?,?)",
                         productoCotizacionProveedor.getIdCatalogo(), productoCotizacionProveedor.getIdProducto());
@@ -55,6 +54,6 @@ public class ProductoCotizacionProveedorRepository {
                                         rs.getBigDecimal("id_producto"))
                                 )
                 );
-    }
+    }*/
 
 }

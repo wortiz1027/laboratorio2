@@ -5,18 +5,20 @@ import java.math.BigDecimal;
 public class Catalogo {
 
     private BigDecimal idCatalogo;
-    private BigDecimal idProveedor;
+    private BigDecimal idUser;
     private String nombreCatalogo;
     private String tipoCatalogo;
+    private String descripcionCatalogo;
 
     public Catalogo() {
     }
 
-    public Catalogo(BigDecimal idCatalogo, BigDecimal idProveedor, String nombreCatalogo, String tipoCatalogo) {
+    public Catalogo(BigDecimal idCatalogo, BigDecimal idUser, String nombreCatalogo, String tipoCatalogo, String descripcionCatalogo) {
         this.idCatalogo = idCatalogo;
-        this.idProveedor = idProveedor;
+        this.idUser = idUser;
         this.nombreCatalogo = nombreCatalogo;
         this.tipoCatalogo = tipoCatalogo;
+        this.descripcionCatalogo = descripcionCatalogo;
     }
 
     public BigDecimal getIdCatalogo() {
@@ -27,12 +29,12 @@ public class Catalogo {
         this.idCatalogo = idCatalogo;
     }
 
-    public BigDecimal getIdProveedor() {
-        return idProveedor;
+    public BigDecimal getIdUser() {
+        return idUser;
     }
 
-    public void setIdProveedor(BigDecimal idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setIdUser(BigDecimal idUser) {
+        this.idUser = idUser;
     }
 
     public String getNombreCatalogo() {
@@ -49,5 +51,13 @@ public class Catalogo {
 
     public void setTipoCatalogo(String tipoCatalogo) {
         this.tipoCatalogo = tipoCatalogo;
+    }
+
+    public String getDescripcionCatalogo() {
+        return descripcionCatalogo;
+    }
+
+    public void setDescripcionCatalogo(String descripcionCatalogo) {
+        this.descripcionCatalogo = descripcionCatalogo;
     }
 }
