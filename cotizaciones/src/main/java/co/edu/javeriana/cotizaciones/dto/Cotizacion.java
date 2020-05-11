@@ -1,6 +1,7 @@
 package co.edu.javeriana.cotizaciones.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Cotizacion {
     private Date fechaRespuesta;
 
     public Cotizacion() {
+        this.productos = new ArrayList<>();
     }
 
     public Cotizacion(BigDecimal idCotizacion, BigDecimal idUser, List<Producto> productos, Date fechaCotizacion, Date fechaRespuesta) {

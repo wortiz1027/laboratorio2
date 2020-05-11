@@ -69,18 +69,31 @@ spring:
     port: 5672
     username: guest
     password: guest
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: usuario1Javeriana@gmail.com
+    password: dnirccsouabjtcjq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 # +-----------------------------------------------------
 # |         SPRING LOGGIN CONFIG
 # +-----------------------------------------------------
 logging:
   level:
     org.springframework.web: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
     org.springframework.data: DEBUG
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.thymeleaf: TRACE
+    org.apache.http: DEBUG
     co.edu.javeriana.cotizaciones: DEBUG
   pattern:
     console: "%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"
