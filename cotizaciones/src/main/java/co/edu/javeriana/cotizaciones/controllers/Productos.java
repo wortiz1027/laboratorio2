@@ -3,6 +3,7 @@ package co.edu.javeriana.cotizaciones.controllers;
 import co.edu.javeriana.cotizaciones.dto.Cotizacion;
 import co.edu.javeriana.cotizaciones.dto.Producto;
 import co.edu.javeriana.cotizaciones.dto.ProductosWrapper;
+import co.edu.javeriana.cotizaciones.repository.CotizacionRepository;
 import co.edu.javeriana.cotizaciones.repository.ProductoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,22 +25,22 @@ public class Productos {
     @Autowired
     private ProductoRepository repository;
 
+    @Autowired
+    private CotizacionRepository cotizacionRepository;
+
     ProductosWrapper wrapper = new ProductosWrapper();
 
     @GetMapping("/productos")
     public String securedPage(Model model, Principal principal) {
         List<Producto> productos = repository.findAll();
-
         List<List<Producto>> w = new ArrayList<>();
 
         int tamanio = (productos.size() / 3) + 1;
-
         int corte = 0;
 
         for (int i = 0; i < tamanio; i++) {
 
             List<Producto> tmp = new ArrayList<>();
-
             for (int j = corte; j < productos.size(); j++) {
                 if (tmp.size() < 3) {
                     tmp.add(productos.get(j));
@@ -62,6 +63,8 @@ public class Productos {
         final String uri = "http://localhost:8080/middleware/api/v1.0/enviarCotizacion";
 
         Cotizacion cotizacion = new Cotizacion();
+
+
 
         RestTemplate restTemplate = new RestTemplate();
         Cotizacion response = restTemplate.postForObject(uri, cotizacion, Cotizacion.class);
