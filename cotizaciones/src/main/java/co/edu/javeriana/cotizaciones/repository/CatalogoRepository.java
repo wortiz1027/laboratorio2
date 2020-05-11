@@ -17,16 +17,16 @@ public class CatalogoRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-/*    public int crearCatalogo(Catalogo catalogo) {
+    public int crearCatalogo(Catalogo catalogo) {
         return jdbcTemplate
-                .update("insert into catalogo (id_proveedor, nombre_catalogo, tipo_catalogo) values (?,?,?)",
-                        catalogo.getIdProveedor(), catalogo.getNombreCatalogo(), catalogo.getTipoCatalogo());
+                .update("insert into catalogo (id_user, nombre_catalogo, tipo_catalogo, descripcion_catalogo) values (?,?,?,?)",
+                        catalogo.getIdUser(), catalogo.getNombreCatalogo(), catalogo.getTipoCatalogo(), catalogo.getDescripcionCatalogo());
     }
 
     public int actualizarCatalogo(Catalogo catalogo) {
         return jdbcTemplate
-                .update("update catalogo set id_proveedor = ?, nombre_catalogo = ?, tipo_catalogo = ? where id_catalogo = ?",
-                        catalogo.getIdProveedor(), catalogo.getNombreCatalogo(), catalogo.getTipoCatalogo(), catalogo.getIdCatalogo());
+                .update("update catalogo set id_user = ?, nombre_catalogo = ?, tipo_catalogo = ?, descripcion_catalogo = ? where id_catalogo = ?",
+                        catalogo.getIdUser(), catalogo.getNombreCatalogo(), catalogo.getTipoCatalogo(), catalogo.getDescripcionCatalogo(), catalogo.getIdCatalogo());
     }
 
     public int deleteCatalogoByIdCatalogo(BigDecimal idCatalogo) {
@@ -40,9 +40,10 @@ public class CatalogoRepository {
                         (rs, rowNum) ->
                                 new Catalogo(
                                         rs.getBigDecimal("id_catalogo"),
-                                        rs.getBigDecimal("id_proveedor"),
+                                        rs.getBigDecimal("id_user"),
                                         rs.getString("nombre_catalogo"),
-                                        rs.getString("tipo_catalogo")
+                                        rs.getString("tipo_catalogo"),
+                                        rs.getString("descripcion_catalogo")
                                 )
                 );
     }
@@ -54,10 +55,11 @@ public class CatalogoRepository {
                         (rs, rowNum) ->
                                 Optional.of(new Catalogo(
                                         rs.getBigDecimal("id_catalogo"),
-                                        rs.getBigDecimal("id_proveedor"),
+                                        rs.getBigDecimal("id_user"),
                                         rs.getString("nombre_catalogo"),
-                                        rs.getString("tipo_catalogo"))
-                                )
+                                        rs.getString("tipo_catalogo"),
+                                        rs.getString("descripcion_catalogo")
+                                ))
                 );
-    }*/
+    }
 }

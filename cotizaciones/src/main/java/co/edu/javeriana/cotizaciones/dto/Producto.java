@@ -10,18 +10,18 @@ public class Producto {
     private String nombreProducto;
     private String tipoProducto;
     private String descripcionProducto;
-    private List<Cotizacion> cotizaciones;
+    private List<PrecioProveedor> precios;
 
     public Producto() {
     }
 
-    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, String tipoProducto, String descripcionProducto, List<Cotizacion> cotizaciones) {
+    public Producto(BigDecimal idProducto, BigDecimal idCatalogo, String nombreProducto, String tipoProducto, String descripcionProducto, List<PrecioProveedor> precios) {
         this.idProducto = idProducto;
         this.idCatalogo = idCatalogo;
         this.nombreProducto = nombreProducto;
         this.tipoProducto = tipoProducto;
         this.descripcionProducto = descripcionProducto;
-        this.cotizaciones = cotizaciones;
+        this.precios = precios;
     }
 
     public BigDecimal getIdProducto() {
@@ -64,11 +64,11 @@ public class Producto {
         this.descripcionProducto = descripcionProducto;
     }
 
-    public List<Cotizacion> getCotizaciones() {
-        return cotizaciones;
+    public List<PrecioProveedor> getPrecios() {
+        return precios;
     }
 
-    public void setCotizaciones(List<Cotizacion> cotizaciones) {
-        this.cotizaciones = cotizaciones;
+    public void setPrecios(List<PrecioProveedor> precios) {
+        this.precios = precios;
     }
 }
