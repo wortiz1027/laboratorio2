@@ -42,7 +42,8 @@ public class ProductoRepository {
                                         rs.getString("nombre_producto"),
                                         rs.getString("descripcion_producto"),
                                         rs.getString("tipo_producto"),
-                                        null
+                                        null,
+                                        Boolean.FALSE
                                 )
                 );
     }
@@ -58,7 +59,9 @@ public class ProductoRepository {
                                                 rs.getString("nombre_producto"),
                                                 rs.getString("descripcion_producto"),
                                                 rs.getString("tipo_producto"),
-                                        null
+                                                null,
+                                                Boolean.FALSE
+
                                         )
                                 )
                 );

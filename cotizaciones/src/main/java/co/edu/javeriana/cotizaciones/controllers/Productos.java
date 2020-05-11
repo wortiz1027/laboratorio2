@@ -1,5 +1,6 @@
 package co.edu.javeriana.cotizaciones.controllers;
 
+import co.edu.javeriana.cotizaciones.dto.Cotizacion;
 import co.edu.javeriana.cotizaciones.dto.Producto;
 import co.edu.javeriana.cotizaciones.dto.ProductosWrapper;
 import co.edu.javeriana.cotizaciones.repository.ProductoRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -26,11 +28,11 @@ public class Productos {
 
     @GetMapping("/productos")
     public String securedPage(Model model, Principal principal) {
-        //List<Producto> productos = repository.findAll();
+        List<Producto> productos = repository.findAll();
 
         List<List<Producto>> w = new ArrayList<>();
 
-        /*int tamanio = (productos.size() / 3) + 1;
+        int tamanio = (productos.size() / 3) + 1;
 
         int corte = 0;
 
@@ -46,9 +48,8 @@ public class Productos {
 
             corte = corte + 3;
             w.add(tmp);
-        }
             wrapper.getProductos().add(tmp);
-        }*/
+        }
 
         model.addAttribute("wrapper", wrapper);
         model.addAttribute("productos", w);
@@ -57,18 +58,14 @@ public class Productos {
     }
 
     @RequestMapping(value = "/cotizaciones", method = RequestMethod.POST)
-    public String contizar(@ModelAttribute("wrapper") ProductosWrapper wrapper, Model model){
-        logger.debug(" * * * * * * * * COTIZACIONES 1 * * * * * * * * * * * *" + wrapper.getProductos().size());
-        if(wrapper != null){
-            logger.debug(" * * * * * * * * COTIZACIONES 2 * * * * * * * * * * * *");
-            for (List<Producto> productos : wrapper.getProductos()) {
-                logger.debug(" * * * * * * * * COTIZACIONES 3 * * * * * * * * * * * *");
-                for(Producto producto : productos){
-                    logger.debug(" * * * * * * * * COTIZACIONES 4 * * * * * * * * * * * *");
-                    //logger.debug(producto.getNombreProducto() + ": " + producto.isSeleccionado());
-                }
-            }
-        }
+    public String contizar(@ModelAttribute("wrapper") ProductosWrapper wrapper, Model model, Principal principal){
+        final String uri = "http://localhost:8080/middleware/api/v1.0/enviarCotizacion";
+
+        Cotizacion cotizacion = new Cotizacion();
+
+        RestTemplate restTemplate = new RestTemplate();
+        Cotizacion response = restTemplate.postForObject(uri, cotizacion, Cotizacion.class);
+
         return "blank";
     }
 

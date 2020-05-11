@@ -39,6 +39,12 @@ public class QuoteMessageListener {
     @Value("${quote.rabbitmq.routingkey.getquote}")
     String routingkeygetquote;
 
+    @Value("${providers.providerA}")
+    String providerA;
+
+    @Value("${providers.providerB}")
+    String providerB;
+
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "${quote.rabbitmq.queue.sendquotes}"),
             exchange = @Exchange(value = "${quote.rabbitmq.exchange}"),
@@ -52,14 +58,16 @@ public class QuoteMessageListener {
         final HttpEntity<Cotizacion> requestEntityresponseProveedor1 = QuoteUtil.encapsulateRequet(cotizacion);
         ResponseEntity<Cotizacion> responseProveedor1 = restTemplate.exchange(urlProveedor1, HttpMethod.POST, requestEntityresponseProveedor1, Cotizacion.class);
         LOG.info("Method.validarCotizacionesProveedores.Received {}", message);
-        Cotizacion cotizacionRs1 = responseProveedor1.getBody();
+        final Cotizacion cotizacionRs1 = responseProveedor1.getBody();
+        QuoteUtil.asignarProveedor(cotizacionRs1, providerA);
 
         //Invocar al proveedor 2
         final String urlProveedor2 = "http://localhost:8084/proveedor/api/v1.0/cotizaciones";
         final HttpEntity<Cotizacion> requestEntityresponseProveedor2 = QuoteUtil.encapsulateRequet(cotizacion);
         ResponseEntity<Cotizacion> responseresponseProveedor2 = restTemplate.exchange(urlProveedor1, HttpMethod.POST, requestEntityresponseProveedor2, Cotizacion.class);
         LOG.info("Method.validarCotizacionesProveedores.Received {}", message);
-        Cotizacion cotizacionRs2 = responseresponseProveedor2.getBody();
+        final Cotizacion cotizacionRs2 = responseresponseProveedor2.getBody();
+        QuoteUtil.asignarProveedor(cotizacionRs1, providerB);
 
         //Construimos una lista de cotizaciones con los precios entregados por cada uno de los proveedores
         List<Cotizacion> cotizaciones = new ArrayList<Cotizacion>(0);
@@ -79,6 +87,9 @@ public class QuoteMessageListener {
         LOG.info("Method.obtenerResultadoCotizacionProveedores.Received {}", message);
         List<Cotizacion> cotizaciones = (List<Cotizacion>) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
         //TODO Invocar al sistema de cotización
+        final String urlSistemaCotizacion = "http://localhost:8082/cotizaciones/api/v1.0/cotizaciones/precios";
+        final HttpEntity<Cotizacion> requestEntityresponseCotizaciones = QuoteUtil.encapsulateRequet(cotizaciones);
+        restTemplate.exchange(urlSistemaCotizacion, HttpMethod.POST, requestEntityresponseCotizaciones, List.class);
         LOG.info("Method.checkamounttopay.Publishing...........");
     }
 }

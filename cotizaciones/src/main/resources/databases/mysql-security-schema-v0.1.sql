@@ -198,6 +198,14 @@ USE `cotizacionesdb`;
 -- password: seguridad
 INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 9645167, 'Administrator', 'Administrator', 'Calle 123', '1984-10-27', 301638457, 'administrator@localhost.co', 'admin', '$2a$10$.eFm7QuqWUg38t83B8RWseEwmb8bG9HuYltL/ogJqWmoX42q3fGXm', 'true', 'true', 'true', 'true');
 
+-- username: acalle
+-- password: Colombia2020
+INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 900342297, 'acalle', 'Arturo Calle', 'Calle 456', '1984-10-27', 301638457, 'admin@acalle.co', 'acalle', '$2a$10$rKMjm.U07KEh6GrR7mPRbe8avK8Geu9.3VFbts1kWbhXGVazgOS0a', 'true', 'true', 'true', 'true');
+
+-- username: avo5
+-- password: Colombia2020
+INSERT INTO `cotizacionesdb`.`users` (`id_user`, `cedula`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `telefono`, `email`, `username`, `password`, `enable`, `account_non_expired`, `credential_non_expired`, `account_non_locket`) VALUES (DEFAULT, 891401345, 'avo5', 'Alberto Vo5', 'Calle 789', '1984-10-27', 301638457, 'avo5@avo5.com.co', 'avo5', '$2a$10$rKMjm.U07KEh6GrR7mPRbe8avK8Geu9.3VFbts1kWbhXGVazgOS0a', 'true', 'true', 'true', 'true');
+
 COMMIT;
 
 
@@ -208,7 +216,7 @@ START TRANSACTION;
 USE `cotizacionesdb`;
 INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (2, 'ROLE_USER');
-INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (3, 'ROLE_GUEST');
+INSERT INTO `cotizacionesdb`.`roles` (`id_role`, `role`) VALUES (3, 'ROLE_PROVEEDOR');
 
 COMMIT;
 
@@ -222,6 +230,9 @@ INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 1);
 INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 2);
 INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (1, 3);
 
+INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (2, 3);
+INSERT INTO `cotizacionesdb`.`users_roles` (`user_id`, `role_id`) VALUES (3, 3);
+
 COMMIT;
 
 
@@ -231,8 +242,8 @@ COMMIT;
 START TRANSACTION;
 USE `cotizacionesdb`;
 -- client_secret = 957254c06ba79806dfa64591f6942613 = spring cryto = $2a$10$4.sRz.udT2CbEfs3cQsRaOaPNWuaXFPcnEj7mERhNIh46dySUNNKO
-INSERT INTO `cotizacionesdb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('cotizaciones_app', 'cotizaciones_service', '$2a$10$4.sRz.udT2CbEfs3cQsRaOaPNWuaXFPcnEj7mERhNIh46dySUNNKO', 'read,write', 'password,refresh_token,client_credentials,authorization_code', 'http://localhost:8082/cotizaciones/login/oauth2/code/', 'USER', 300, 600, '', 'true');
+INSERT INTO `cotizacionesdb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('cotizaciones_app', 'cotizaciones_service', '$2a$10$4.sRz.udT2CbEfs3cQsRaOaPNWuaXFPcnEj7mERhNIh46dySUNNKO', 'read,write', 'password,refresh_token,client_credentials,authorization_code', 'http://localhost:8082/cotizaciones/login/oauth2/code/', 'USER,PROVEEDOR', 300, 600, '', 'true');
 -- client_secret = 8de6d4c46d616eb4c358ba6f63bb54dc = spring cryto = $2a$10$dKXov8JU3D9tAdJ16y6iTOqWWdXM0CJnwDca6BTbc1yNJeGRed9ua
-INSERT INTO `cotizacionesdb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('proveedores_app', 'proveedores_service', '$2a$10$dKXov8JU3D9tAdJ16y6iTOqWWdXM0CJnwDca6BTbc1yNJeGRed9ua', 'read,write', 'password,refresh_token,client_credentials,authorization_code', 'http://localhost:8083/proveedores/login/oauth2/code/', 'USER', 300, 600, '', 'true');
+INSERT INTO `cotizacionesdb`.`oauth_client_details` (`client_id`, `resource_id`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('proveedores_app', 'proveedores_service', '$2a$10$dKXov8JU3D9tAdJ16y6iTOqWWdXM0CJnwDca6BTbc1yNJeGRed9ua', 'read,write', 'password,refresh_token,client_credentials,authorization_code', 'http://localhost:8083/proveedores/login/oauth2/code/', 'USER,PROVEEDOR', 300, 600, '', 'true');
 
 COMMIT;
