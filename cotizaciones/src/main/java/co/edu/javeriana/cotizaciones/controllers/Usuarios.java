@@ -47,17 +47,14 @@ public class Usuarios {
             usuario.setFechaNacimiento(new SimpleDateFormat("yyyy-MM-dd").parse(usuario.getFechaNacimientoCadena()));
 
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-            //int idUser = userRepository.crearUsers(usuario);
-            //Users u = userRepository.findUsersByUserName(usuario.getUsername()).get();
-            //logger.info("id usuario: {}", idUser);
-            //UserRole userRole = new UserRole(u.getIdUser(), usuario.getRole().getIdRole());
+
             BigDecimal idUser = userRepository.crearUsers(usuario);
             logger.info("id usuario: {}", idUser);
             UserRole userRole = new UserRole(idUser, usuario.getRole().getIdRole());
             roleRepository.crearRoleUser(userRole);
         }
 
-        return "productos";
+        return "redirect:/productos";
     }
 
 }
