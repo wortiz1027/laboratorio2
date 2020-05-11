@@ -49,7 +49,7 @@ public class Catalogos {
             catalogoRepository.crearCatalogo(catalogo);
         }
 
-        return "blank";
+        return "successPage";
     }
 
 }
