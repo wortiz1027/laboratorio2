@@ -6,23 +6,25 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Producto implements Serializable {
-    private static final long serialVersionUID = -3262978586471092989L;
+    private static final long serialVersionUID = -5898784828558964065L;
 
-    private String codigo;
-    private String nombre;
-    private BigDecimal precio;
+    private BigDecimal idProducto;
+    private BigDecimal idCatalogo;
+    private String nombreProducto;
+    private String tipoProducto;
+    private String descripcionProducto;
+    private List<PrecioProveedor> precios;
 
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                '}';
+    public List<PrecioProveedor> getPrecios() {
+        if (this.precios == null)
+            this.precios = new ArrayList<PrecioProveedor>(0);
+        return this.precios;
     }
 }
