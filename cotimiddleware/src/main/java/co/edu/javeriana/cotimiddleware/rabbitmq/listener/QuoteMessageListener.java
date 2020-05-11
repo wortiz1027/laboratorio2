@@ -88,7 +88,7 @@ public class QuoteMessageListener {
         List<Cotizacion> cotizaciones = (List<Cotizacion>) ObjectAndByteCovertUtil.ByteToObject(message.getBody());
         //TODO Invocar al sistema de cotización
         final String urlSistemaCotizacion = "http://localhost:8082/cotizaciones/api/v1.0/cotizaciones/precios";
-        final HttpEntity<Cotizacion> requestEntityresponseCotizaciones = QuoteUtil.encapsulateRequet(cotizaciones);
+        final HttpEntity<List<Cotizacion>> requestEntityresponseCotizaciones = QuoteUtil.encapsulateRequet(cotizaciones);
         restTemplate.exchange(urlSistemaCotizacion, HttpMethod.POST, requestEntityresponseCotizaciones, List.class);
         LOG.info("Method.checkamounttopay.Publishing...........");
     }
