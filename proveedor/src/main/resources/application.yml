@@ -1,0 +1,27 @@
+# +-----------------------------------------------------
+# |         SERVER CONFIG
+# +-----------------------------------------------------
+server:
+  port: 8083
+  servlet:
+    context-path: /proveedor
+    session:
+      cookie:
+        name: UISESSION
+
+#security:
+#  oauth2:
+#    client:
+#      clientId: proveedores_app
+#      clientSecret: 8de6d4c46d616eb4c358ba6f63bb54dc
+#      access-token-uri: http://localhost:8081/security/oauth/token
+#    resource:
+#      token-info-uri: http://localhost:8081/security/oauth/check_token
+#
+#logging:
+#  level:
+#    org.springframework.web: DEBUG
+#    org.springframework.security: TRACE
+#  pattern:
+#    console: "%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"
+#    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -54,4 +54,4 @@ WORKDIR $APP_HOME
 ADD ./target/$JAR_FILE $APP_HOME/security-service.jar
 
 # Ejecutanto el microservicio en el contenedor
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=qa -jar ${APP_HOME}/security-service.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar ${APP_HOME}/security-service.jar" ]
